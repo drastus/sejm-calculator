@@ -42,9 +42,6 @@ export default {
 				use: [
 					{
 						loader: MiniCssExtractPlugin.loader,
-						options: {
-							publicPath: __dirname + '/../../public/',
-						},
 					},
 					{
 						loader: 'css-loader',
