@@ -1,0 +1,23 @@
+p Zawartość
+form#support-form
+	p
+		label Prawo i Sprawiedliwość
+			input(type='number' name='pis' value='41')
+	p
+		label Koalicja Obywatelska
+			input(type='number' name='ko' value='28')
+	p
+		label Lewica
+			input(type='number' name='lewica' value='13')
+	p
+		label PSL – Koalicja Polska
+			input(type='number' name='psl' value='5')
+	p
+		label Konfederacja
+			input(type='number' name='konfederacja' value='5')
+	p
+		button#calculate-button Oblicz
+
+.charts-row
+	#support-bar-chart.ct-chart.ct-perfect-fourth
+	#division-pie-chart.ct-chart.ct-perfect-fourth

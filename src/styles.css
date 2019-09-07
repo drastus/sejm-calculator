@@ -1,6 +1,36 @@
 @import 'modern-normalize/modern-normalize.css';
+@import 'chartist/dist/chartist.min.css';
 
 body {
+	margin: 1rem;
 	color: #333;
 	background-color: cadetblue;
+}
+
+.charts-row {
+	display: flex;
+	height: 200px;
+}
+
+@media (max-width: 500px) {
+	.charts-row {
+		flex-wrap: wrap;
+	}
+}
+
+input[type='number'] {
+	appearance: textfield;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+	appearance: none;
+	margin: 0;
+}
+
+#support-form input {
+	width: 3rem;
+	padding: 0.25rem;
+	margin: 0 0.5rem;
+	text-align: right;
 }
