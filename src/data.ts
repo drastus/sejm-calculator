@@ -1,24 +1,8 @@
-type PastCommiteeId = 'pis' | 'po' | 'razem' | 'korwin' | 'psl' | 'zl' | 'k15' | 'nowoczesna'
-
-type PastSupport = {
-	[pastCommitteeId in PastCommiteeId]: number;
-}
-
-type Committee = {
-	id: string;
-	name: string;
-	shortName: string;
-	threshold: number;
-	pastSupportEquivalence: PastCommiteeId[];
-}
-
-export type Constituency = {
-	name: string;
-	size: number;
-	pastSupport: PastSupport;
-	support?: number[];
-	mandates?: number[];
-}
+import {
+	PastSupport,
+	Committee,
+	Constituency,
+ } from './types';
 
 export const pastSupport: PastSupport = {
 	pis: 37.58,
