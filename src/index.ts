@@ -5,17 +5,22 @@ import './styles.css';
 
 const handleCalculateButtonClick = (event: Event) => {
 	event.preventDefault();
+	// clear charts
 
 	const support = Array
 		.from(document.querySelectorAll<HTMLInputElement>('#support-form input'))
 		.map(input => parseFloat(input.value));
+	if (!document.querySelector<HTMLFormElement>('#support-form')!.checkValidity()) return;
 	const mandates = calculateMandates(support);
 
 	const barChartData = {
-		labels: committees.map(committee => committee.shortName),
-		series: [support],
+		labels: committees.map(committee => committee.shortName).slice(0, -1),
+		series: support,
 	};
-	new Chartist.Bar('#support-bar-chart', barChartData);
+	const barChartOptions = {
+		distributeSeries: true,
+	};
+	new Chartist.Bar('#support-bar-chart', barChartData, barChartOptions);
 
 	const pieChartData = {
 		series: mandates,

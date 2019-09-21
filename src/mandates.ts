@@ -20,6 +20,9 @@ const calculateLocalSupport = (
 	const localSupport = support.map((committeeSupport, index) => (
 		committeeSupport * localSupportDeviation[index]
 	));
+	if (constituency.name === 'Opole') {
+		localSupport.push(8.14);
+	}
 	return localSupport;
 }
 
@@ -29,7 +32,7 @@ export const calculateMandates = (support: number[]): number[] => {
 			.map(pastCommitteeId => pastSupport[pastCommitteeId])
 			.reduce((a, b) => a + b, 0)
 	));
-	const mandates: number[] = new Array(support.length).fill(0);
+	const mandates: number[] = new Array(support.length + 1).fill(0);
 	constituencies.forEach(constituency => {
 		const localSupport = calculateLocalSupport(support, pastSupportProjection, constituency);
 		constituency.support = localSupport;

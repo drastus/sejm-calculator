@@ -51,6 +51,13 @@ export const committees: Committee[] = [
 		threshold: 5,
 		pastSupportEquivalence: ['korwin'],
 	},
+	{
+		id: 'mn',
+		name: 'Mniejszość Niemiecka',
+		shortName: 'MN',
+		threshold: 0,
+		pastSupportEquivalence: [],
+	},
 ];
 
 export const constituencies: Constituency[] = [
