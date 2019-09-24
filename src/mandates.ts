@@ -36,7 +36,7 @@ export const calculateMandates = (support: number[]): number[] => {
 	constituencies.forEach(constituency => {
 		const localSupport = calculateLocalSupport(support, pastSupportProjection, constituency);
 		constituency.support = localSupport;
-		constituency.mandates = new Array(support.length).fill(0);
+		constituency.mandates = new Array(localSupport.length).fill(0);
 		const filteredLocalSupport = localSupport.map((localCommitteeSupport, index) => {
 			if (support[index] < committees[index].threshold) return 0;
 			return localCommitteeSupport;

@@ -1,15 +1,37 @@
 import Chartist, {ChartistStatic} from 'chartist';
-import {committees} from './data';
+import {committees, constituencies} from './data';
 import {calculateMandates} from './mandates';
+import template from './constituency.pug';
 import './styles.css';
 
 const clearResults = (bar: ChartistStatic['Bar'], pie: ChartistStatic['Pie']) => {
-	bar.detach();
-	document.getElementById('support-bar-chart')!.innerHTML = '';
-	pie.detach();
-	document.getElementById('division-pie-chart')!.innerHTML = '';
 	document.querySelectorAll<HTMLTableDataCellElement>(`tr td:last-child`).forEach(td => {
 		td.innerHTML = '';
+	});
+	bar.detach();
+	pie.detach();
+	document.getElementById('support-bar-chart')!.innerHTML = '';
+	document.getElementById('division-pie-chart')!.innerHTML = '';
+	document.getElementById('constituency-results')!.innerHTML = '';
+}
+
+const displayConstituencyResults = () => {
+	const container = document.getElementById('constituency-results');
+	constituencies.forEach((constituency, index) => {
+		const data = (constituency.mandates && constituency.support)
+			? constituency.mandates.map((mandates, index) => ({
+				committee: committees[index].name,
+				support: (constituency.support as number[])[index],
+				mandates,
+			}))
+			: [];
+		data.sort((a, b) => b.support - a.support)
+		container!.insertAdjacentHTML('beforeend', template({
+			number: index + 1,
+			name: constituency.name,
+			size: constituency.size,
+			data,
+		}));
 	});
 }
 
@@ -49,9 +71,11 @@ const handleCalculateButtonClick = (event: Event) => {
 	};
 	const pie = new Chartist.Pie('#division-pie-chart', pieChartData, pieChartOptions);
 
+	displayConstituencyResults();
+
 	inputs.forEach(input => input.addEventListener('input', () => {
 		clearResults(bar, pie);
-	}))
+	}));
 }
 
 const bindActions = () => {
