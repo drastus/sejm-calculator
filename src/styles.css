@@ -28,9 +28,22 @@ input[type='number']::-webkit-outer-spin-button {
 	margin: 0;
 }
 
+#support-form button {
+	margin: 1rem 0;
+}
+
 #support-form input {
 	width: 3.5rem;
 	padding: 0.25rem;
-	margin: 0 0.5rem;
+	margin: 0 0.25rem 0 0.5rem;
+	text-align: right;
+}
+
+#support-form table td,
+#support-form table th {
+	height: 2rem;
+}
+
+#support-form table td:last-child {
 	text-align: right;
 }

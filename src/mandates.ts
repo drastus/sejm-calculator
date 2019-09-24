@@ -52,8 +52,10 @@ export const calculateMandates = (support: number[]): number[] => {
 		}
 		quotients.sort((a, b) => b.quotient - a.quotient);
 		quotients.slice(0, constituency.size).forEach(quotient => {
-			mandates[quotient.committeeIndex]++;
-			constituency.mandates![quotient.committeeIndex]++;
+			if (quotient.quotient > 0) {
+				mandates[quotient.committeeIndex]++;
+				constituency.mandates![quotient.committeeIndex]++;
+			}
 		});
 	});
 	return mandates;

@@ -1,22 +1,50 @@
 p Zawartość
 form#support-form
-	p
-		label Prawo i Sprawiedliwość
-			input(type='number' step='any' name='pis' value='41')
-	p
-		label Koalicja Obywatelska
-			input(type='number' step='any' name='ko' value='28')
-	p
-		label SLD – Lewica
-			input(type='number' step='any' name='lewica' value='13')
-	p
-		label PSL – Koalicja Polska
-			input(type='number' step='any' name='psl' value='5')
-	p
-		label Konfederacja
-			input(type='number' step='any' name='konfederacja' value='5')
-	p
-		button#calculate-button Oblicz
+	table
+		tr
+			th Komitet
+			th Poparcie
+			th Mandaty
+		tr(class='pis')
+			td
+				label(for='pis') Prawo i Sprawiedliwość
+			td
+				input(type='number' step='any' id='pis' name='pis' value='41')
+				| %
+			td
+		tr(class='ko')
+			td
+				label(for='ko') Koalicja Obywatelska
+			td
+				input(type='number' step='any' id='ko' name='ko' value='28')
+				| %
+			td
+		tr(class='lewica')
+			td
+				label(for='lewica') SLD – Lewica
+			td
+				input(type='number' step='any' id='lewica' name='lewica' value='13')
+				| %
+			td
+		tr(class='psl')
+			td
+				label(for='psl') PSL – Koalicja Polska
+			td
+				input(type='number' step='any' id='psl' name='psl' value='5')
+				| %
+			td
+		tr(class='konfederacja')
+			td
+				label(for='konfederacja') Konfederacja
+			td
+				input(type='number' step='any' id='konfederacja' name='konfederacja' value='5')
+				| %
+			td
+		tr(class='mn')
+			td Mniejszość Niemiecka
+			td
+			td
+	button#calculate-button Oblicz
 
 .charts-row
 	#support-bar-chart.ct-chart.ct-perfect-fourth
