@@ -75,6 +75,9 @@ const handleCalculateButtonClick = (event: Event) => {
 		donutWidth: 60,
 		startAngle: 270,
 		total: 460 * 2,
+		labelInterpolationFnc: (value: number) => {
+			return value < 15 ? '' : String(value);
+		},
 	};
 	const pie = new Chartist.Pie('#division-pie-chart', pieChartData, pieChartOptions);
 

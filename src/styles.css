@@ -11,7 +11,7 @@ body {
 	width: 100%;
 	max-width: 58rem;
 	margin: 1rem auto;
-	padding: 0.25rem 1.5rem;
+	padding: 0.25rem 1.5rem 1rem;
 	border: 1px solid lightgray;
 	background-color: white;
 }
@@ -23,6 +23,7 @@ h1 {
 .charts-row {
 	display: flex;
 	height: auto;
+	margin-bottom: 1rem;
 }
 
 .ct-chart:empty {
@@ -31,7 +32,11 @@ h1 {
 
 #division-pie-chart svg {
 	transform-origin: (0, 100%);
-	transform: translate(-7.5%, 30%) scale(1.15);
+	transform: translate(-6%, 34%) scale(1.1);
+}
+
+#division-pie-chart .ct-label {
+	fill: white;
 }
 
 @media (max-width: 500px) {
@@ -98,8 +103,14 @@ h2 {
 	text-align: right;
 }
 
+#support-form table {
+	margin: 0 auto;
+}
+
 #support-form button {
-	margin: 1rem 0;
+	display: block;
+	margin: 1rem auto 2.5rem;
+	font-weight: bold;
 }
 
 #support-form input {
