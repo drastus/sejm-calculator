@@ -9,7 +9,7 @@ const calculateLocalSupport = (
 	const localPastSupport = constituency.pastSupport;
 	const localPastSupportProjection = support.map((committeeSupport, index) => (
 		committees[index].pastSupportEquivalence
-			.map(pastCommitteeId => localPastSupport[pastCommitteeId])
+			.map(pastCommittee => localPastSupport[pastCommittee[0]] * pastCommittee[1])
 			.reduce((a, b) => a + b, 0)
 	));
 	const localSupportDeviation = pastSupportProjection
@@ -29,7 +29,7 @@ const calculateLocalSupport = (
 export const calculateMandates = (support: number[]): number[] => {
 	const pastSupportProjection = support.map((committeeSupport, index) => (
 		committees[index].pastSupportEquivalence
-			.map(pastCommitteeId => pastSupport[pastCommitteeId])
+			.map(pastCommittee => pastSupport[pastCommittee[0]] * pastCommittee[1])
 			.reduce((a, b) => a + b, 0)
 	));
 	const mandates: number[] = new Array(support.length + 1).fill(0);

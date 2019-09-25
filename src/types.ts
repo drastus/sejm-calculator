@@ -9,7 +9,7 @@ export type Committee = {
 	name: string;
 	shortName: string;
 	threshold: number;
-	pastSupportEquivalence: PastCommiteeId[];
+	pastSupportEquivalence: [PastCommiteeId, number][];
 }
 
 export type Constituency = {
