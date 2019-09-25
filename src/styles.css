@@ -4,6 +4,7 @@
 body {
 	color: #333;
 	background-color: lightgoldenrodyellow;
+	font-size: 15px;
 }
 
 .container {
@@ -22,6 +23,11 @@ h1 {
 .charts-row {
 	display: flex;
 	height: 200px;
+}
+
+#division-pie-chart svg {
+	transform-origin: (0, 100%);
+	transform: translate(-10%, 20%) scale(1.2);
 }
 
 @media (max-width: 500px) {
@@ -110,4 +116,29 @@ h2 {
 
 #support-form table td:last-child {
 	text-align: right;
+}
+
+.ct-series-a .ct-bar,
+.ct-series-a .ct-slice-donut {
+	stroke: #55a;
+}
+
+.ct-series-b .ct-bar,
+.ct-series-b .ct-slice-donut {
+	stroke: #a85;
+}
+
+.ct-series-c .ct-bar,
+.ct-series-c .ct-slice-donut {
+	stroke: #a55;
+}
+
+.ct-series-d .ct-bar,
+.ct-series-d .ct-slice-donut {
+	stroke: #1c6;
+}
+
+.ct-series-e .ct-bar,
+.ct-series-e .ct-slice-donut {
+	stroke: #655;
 }
