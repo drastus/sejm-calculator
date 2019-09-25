@@ -59,6 +59,13 @@ const handleCalculateButtonClick = (event: Event) => {
 		distributeSeries: true,
 	};
 	const bar = new Chartist.Bar('#support-bar-chart', barChartData, barChartOptions);
+	bar.on('draw', (data: {type: string; element: {attr(a: object): object}}) => {
+		if (data.type === 'bar') {
+			data.element.attr({
+				style: 'stroke-width: 30px',
+			});
+		}
+	});
 
 	const pieChartData = {
 		series: mandates,

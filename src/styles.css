@@ -22,12 +22,16 @@ h1 {
 
 .charts-row {
 	display: flex;
-	height: 200px;
+	height: auto;
+}
+
+.ct-chart:empty {
+	height: 0;
 }
 
 #division-pie-chart svg {
 	transform-origin: (0, 100%);
-	transform: translate(-10%, 20%) scale(1.2);
+	transform: translate(-7.5%, 30%) scale(1.15);
 }
 
 @media (max-width: 500px) {
@@ -120,17 +124,17 @@ h2 {
 
 .ct-series-a .ct-bar,
 .ct-series-a .ct-slice-donut {
-	stroke: #55a;
+	stroke: #56e;
 }
 
 .ct-series-b .ct-bar,
 .ct-series-b .ct-slice-donut {
-	stroke: #a85;
+	stroke: #eb4;
 }
 
 .ct-series-c .ct-bar,
 .ct-series-c .ct-slice-donut {
-	stroke: #a55;
+	stroke: #d44;
 }
 
 .ct-series-d .ct-bar,
