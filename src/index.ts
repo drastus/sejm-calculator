@@ -1,7 +1,7 @@
 import Chartist, {ChartistStatic} from 'chartist';
 import {committees, constituencies} from './data';
 import {calculateMandates} from './mandates';
-import template from './constituency.pug';
+import template from './templates/constituency.pug';
 import './styles.css';
 
 const clearResults = (bar: ChartistStatic['Bar'], pie: ChartistStatic['Pie']) => {

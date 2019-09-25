@@ -61,7 +61,7 @@ export default {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: './src/index.pug',
+			template: './src/templates/index.pug',
 		}),
 		new MiniCssExtractPlugin({
 			filename: "[name].css",
