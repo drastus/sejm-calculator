@@ -1,0 +1,71 @@
+p.
+	Przeliczanie sondażowych wyników poparcia dla partii na uzyskane mandaty w Sejmie nie jest
+	łatwe. Zgodnie z obecnie obowiązującą w Polsce ordynacją wyborczą głosy na poszczególne
+	komitety są przeliczane na mandaty metodą D’Hondta osobno w każdym z 41 okręgów. Symulacja
+	podziału mandatów przy założeniu takiego samego wyniku we wszystkich okręgach jest bardzo
+	niedokładna, bowiem różnice w rozkładzie poparcia w poszczególnych okręgach mają istotne
+	przełożenie na uzyskiwane mandaty.
+p.
+	Poniższy kalkulator próbuje rozwiązać ten problem poprzez symulację zróżnicowanego poparcia
+	partii w okręgach na podstawie szczegółowych wyników wyborów do Sejmu w 2015 roku.
+	Ugrupowanie, które w danym okręgu miało wtedy poparcie wyższe/niższe niż w całym kraju,
+	również w tej symulacji będzie miało w tym okręgu odpowiednio wyższe/niższe poparcie. Pozwala
+	to na sporządzenie szczegółowej prognozy podziału mandatów na poziomie poszczególnych okręgów.
+p.
+	Oczywiście problemem pozostaje ustalenie przepływów elektoratu między ugrupowaniami
+	startującymi w 2015 roku a obecnymi. Można to zrobić jedynie w mocno przybliżony sposób.
+	W przypadku PiS-u odpowiednikiem z poprzednich wyborów jest ten sam komitet. Dla pozostałych
+	komitetów zastosowano następujące odpowiedniki: KO ≈ PO + Nowoczesna; Lewica ≈ Zjednoczona
+	Lewica + Razem; PSL ≈ PSL + ½ Kukiz’15; Konfederacja ≈ KORWiN + ½ Kukiz’15.
+form#support-form
+	table
+		tr
+			th Komitet
+			th Poparcie
+			th Mandaty
+		tr(class='pis')
+			td
+				label(for='pis') Prawo i Sprawiedliwość
+			td
+				input(type='number' step='any' id='pis' name='pis')
+				| %
+			td
+		tr(class='ko')
+			td
+				label(for='ko') Koalicja Obywatelska
+			td
+				input(type='number' step='any' id='ko' name='ko')
+				| %
+			td
+		tr(class='lewica')
+			td
+				label(for='lewica') SLD – Lewica
+			td
+				input(type='number' step='any' id='lewica' name='lewica')
+				| %
+			td
+		tr(class='psl')
+			td
+				label(for='psl') PSL – Koalicja Polska
+			td
+				input(type='number' step='any' id='psl' name='psl')
+				| %
+			td
+		tr(class='konfederacja')
+			td
+				label(for='konfederacja') Konfederacja
+			td
+				input(type='number' step='any' id='konfederacja' name='konfederacja')
+				| %
+			td
+		tr(class='mn')
+			td Mniejszość Niemiecka
+			td
+			td
+	button#calculate-button Oblicz
+
+.charts-row
+	#support-bar-chart.ct-chart.ct-perfect-fourth
+	#division-pie-chart.ct-chart.ct-perfect-fourth
+
+#constituency-results
