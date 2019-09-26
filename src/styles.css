@@ -20,6 +20,10 @@ h1 {
 	font-size: 1.75rem;
 }
 
+p {
+	text-align: justify;
+}
+
 .charts-row {
 	display: flex;
 	height: auto;
@@ -104,7 +108,7 @@ h2 {
 }
 
 #support-form table {
-	margin: 0 auto;
+	margin: 1rem auto 0;
 }
 
 #support-form button {
