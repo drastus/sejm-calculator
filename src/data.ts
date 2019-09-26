@@ -42,14 +42,14 @@ export const committees: Committee[] = [
 		name: 'PSL – Koalicja Polska',
 		shortName: 'PSL',
 		threshold: 5,
-		pastSupportEquivalence: [['psl', 1], ['k15', 0.5]],
+		pastSupportEquivalence: [['psl', 1], ['k15', 0.25]],
 	},
 	{
 		id: 'konfederacja',
 		name: 'Konfederacja',
 		shortName: 'Konf.',
 		threshold: 5,
-		pastSupportEquivalence: [['korwin', 1], ['k15', 0.5]],
+		pastSupportEquivalence: [['korwin', 1], ['k15', 0.75]],
 	},
 	{
 		id: 'mn',
