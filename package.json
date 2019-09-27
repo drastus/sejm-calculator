@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Simulator for the Polish Sejm 2019 election",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --mode=production",
     "start": "webpack-dev-server --inline --watch --hot",
     "deploy": "gh-pages -d dist"
   },

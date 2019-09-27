@@ -161,3 +161,18 @@ h2 {
 .ct-series-e .ct-slice-donut {
 	stroke: #655;
 }
+
+footer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin: 0.5rem 1rem;
+}
+
+address {
+	font-style: normal;
+}
+
+a.github {
+	color: #333;
+}
