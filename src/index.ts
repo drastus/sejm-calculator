@@ -41,7 +41,14 @@ const handleCalculateButtonClick = (event: Event) => {
 	const inputs = document.querySelectorAll<HTMLInputElement>('#support-form input');
 	const support = Array
 		.from(inputs)
-		.map(input => parseFloat(input.value));
+		.map(input => parseFloat(input.value))
+		.map(value => Number.isNaN(value) ? 0 : value);
+	if (support.reduce((a, b) => a + b, 0) > 100) {
+		inputs.forEach(input => input.setCustomValidity('Suma poparcia nie może przekraczać 100%'));
+		return;
+	} else {
+		inputs.forEach(input => input.setCustomValidity(''));
+	}
 	if (!document.querySelector<HTMLFormElement>('#support-form')!.checkValidity()) return;
 	const mandates = calculateMandates(support);
 
