@@ -1,8 +1,9 @@
 import Chartist, {ChartistStatic} from 'chartist';
 import {committees, constituencies} from './data';
 import {calculateMandates} from './mandates';
-import template from './templates/constituency.pug';
-import './styles.css';
+import constituencyTemplate from './templates/constituency.pug';
+import tableTemplate from './templates/table.pug';
+import './styles/styles.css';
 
 const clearResults = (bar: ChartistStatic['Bar'], pie: ChartistStatic['Pie']) => {
 	document.querySelectorAll<HTMLTableDataCellElement>(`tr td:last-child`).forEach(td => {
@@ -25,8 +26,8 @@ const displayConstituencyResults = () => {
 				mandates,
 			}))
 			: [];
-		data.sort((a, b) => b.support - a.support)
-		container!.insertAdjacentHTML('beforeend', template({
+		data.sort((a, b) => b.support - a.support);
+		container!.insertAdjacentHTML('beforeend', constituencyTemplate({
 			number: index + 1,
 			name: constituency.name,
 			size: constituency.size,
@@ -95,6 +96,13 @@ const handleCalculateButtonClick = (event: Event) => {
 	}));
 }
 
+const generateTable = () => {
+	const form = document.getElementById('support-form');
+	form!.insertAdjacentHTML('afterbegin', tableTemplate({
+		committees,
+	}));
+}
+
 const bindActions = () => {
 	document
 		.querySelector('#calculate-button')!
@@ -102,5 +110,6 @@ const bindActions = () => {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+	generateTable();
 	bindActions();
 });

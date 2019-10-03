@@ -1,0 +1,21 @@
+table
+	tr
+		th Komitet
+		th Poparcie
+		th Mandaty
+	each committee in committees
+		tr(class=committee.id)
+			td
+				label(for=committee.id) #{committee.name}
+			td
+				if committee.id !== 'mn'
+					input(
+						type='number'
+						step='any'
+						min=0
+						max=100
+						id=committee.id
+						name=committee.id
+					)
+					| %
+			td
