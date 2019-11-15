@@ -21,7 +21,7 @@ const calculateLocalSupport = (
 		committeeSupport * localSupportDeviation[index]
 	));
 	if (constituency.name === 'Opole') {
-		localSupport.push(8.14);
+		localSupport.push(7.9);
 	}
 	return localSupport;
 }

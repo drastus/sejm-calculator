@@ -1,7 +1,7 @@
 {
   "name": "sejm-mandates-simulator",
   "version": "1.0.0",
-  "description": "Simulator for the Polish Sejm 2019 election",
+  "description": "Simulator for the Polish Sejm election",
   "scripts": {
     "build": "webpack --mode=production",
     "start": "webpack-dev-server --inline --watch --hot",
