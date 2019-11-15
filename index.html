@@ -1,18 +1,12 @@
 <!DOCTYPE html><html lang="pl"><head><title>Kalkulator mandatów w wyborach do Sejmu</title><meta charset="UTF-8"><script async src="https://www.googletagmanager.com/gtag/js?id=UA-151698411-1"></script><script>window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'UA-151698411-1');</script><link href="main.css" rel="stylesheet"></head><body><div class="container"><h1 class="main-heading">Kalkulator mandatów w wyborach do Sejmu 2019</h1><p>Przeliczanie sondażowych wyników poparcia dla partii na uzyskane mandaty w Sejmie nie jest
-łatwe. Zgodnie z obecnie obowiązującą w Polsce ordynacją wyborczą głosy na poszczególne
-komitety są przeliczane na mandaty metodą D’Hondta osobno w każdym z 41 okręgów. Symulacja
-podziału mandatów przy założeniu takiego samego wyniku we wszystkich okręgach jest bardzo
-niedokładna, bowiem różnice w rozkładzie poparcia w poszczególnych okręgach mają istotne
-przełożenie na uzyskiwane mandaty.</p><p>Poniższy kalkulator próbuje rozwiązać ten problem poprzez symulację zróżnicowanego poparcia
-partii w okręgach na podstawie szczegółowych wyników wyborów do Sejmu w 2015 roku.
-Ugrupowanie, które w danym okręgu miało wtedy poparcie wyższe/niższe niż w całym kraju,
-również w tej symulacji będzie miało w tym okręgu odpowiednio wyższe/niższe poparcie. Pozwala
-to na sporządzenie szczegółowej prognozy podziału mandatów na poziomie poszczególnych okręgów.</p><p>Oczywiście problemem pozostaje ustalenie przepływów elektoratu między ugrupowaniami
-startującymi w 2015 roku a obecnymi. Można to zrobić jedynie w mocno przybliżony sposób.
-W przypadku PiS-u odpowiednikiem z poprzednich wyborów jest ten sam komitet. Dla pozostałych
-komitetów zastosowano następujące odpowiedniki: KO ≈ PO + Nowoczesna; Lewica ≈ Zjednoczona
-Lewica + Razem; PSL ≈ PSL + ¼ Kukiz’15; Konfederacja ≈ KORWiN + ¾ Kukiz’15.
+gtag('config', 'UA-151698411-1');</script><link href="main.css" rel="stylesheet"></head><body><div class="container"><h1 class="main-heading">Kalkulator mandatów w wyborach do Sejmu</h1><p>Kalkulator zwraca szacowany rozkład mandatów w Sejmie na podstawie wyników sondażowych.
+Obliczenia są dokonywane zgodnie z obowiązującą w Polsce ordynacją wyborczą, tj. stosując
+metodę D’Hondta osobno w każdym z 41 okręgów wyborczych.</p><p>Dodatkowo poparcie dla poszczególnych komitetów w okręgach jest różnicowane na podstawie
+szczegółowych wyników ostatnich wyborów parlamentarnych. Ugrupowanie, które w danym okręgu miało
+wtedy poparcie wyższe/niższe niż w całym kraju, również w tej symulacji będzie miało w tym
+okręgu odpowiednio wyższe/niższe poparcie. Pozwala to na sporządzenie szczegółowej prognozy
+podziału mandatów na poziomie poszczególnych okręgów.</p><p>Aktualizacja 2019-11-15: od teraz w prognozie brane są pod uwagę wyniki wyborów do Sejmu z
+2019 roku.
 </p><form id="support-form"><button id="calculate-button">Oblicz</button></form><div class="charts-row"><div class="ct-chart ct-perfect-fourth" id="support-bar-chart"></div><div class="ct-chart ct-perfect-fourth" id="division-pie-chart"></div></div><div id="constituency-results"></div><footer><a class="github" href="https://github.com/drastus/sejm-calculator">Kod źródłowy</a><address>Kontakt: zrchos na serwerze gmail.com</address></footer></div><script type="text/javascript" src="bundle.js"></script></body></html>
