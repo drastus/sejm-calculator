@@ -9,14 +9,13 @@ const calculateLocalSupport = (
 	const localPastSupport = constituency.pastSupport;
 	const localPastSupportProjection = support.map((committeeSupport, index) => (
 		committees[index].pastSupportEquivalence
-			.map(pastCommittee => localPastSupport[pastCommittee[0]] * pastCommittee[1])
+			.map((pastCommittee) => localPastSupport[pastCommittee[0]] * pastCommittee[1])
 			.reduce((a, b) => a + b, 0)
 	));
 	const localSupportDeviation = pastSupportProjection
 		.map((pastCommitteSupportProjection, index) => (
 			localPastSupportProjection[index] / pastCommitteSupportProjection
-		)
-	);
+		));
 	const localSupport = support.map((committeeSupport, index) => (
 		committeeSupport * localSupportDeviation[index]
 	));
@@ -24,16 +23,16 @@ const calculateLocalSupport = (
 		localSupport.push(7.9);
 	}
 	return localSupport;
-}
+};
 
 export const calculateMandates = (support: number[]): number[] => {
 	const pastSupportProjection = support.map((committeeSupport, index) => (
 		committees[index].pastSupportEquivalence
-			.map(pastCommittee => pastSupport[pastCommittee[0]] * pastCommittee[1])
+			.map((pastCommittee) => pastSupport[pastCommittee[0]] * pastCommittee[1])
 			.reduce((a, b) => a + b, 0)
 	));
 	const mandates: number[] = new Array(support.length + 1).fill(0);
-	constituencies.forEach(constituency => {
+	constituencies.forEach((constituency) => {
 		const localSupport = calculateLocalSupport(support, pastSupportProjection, constituency);
 		constituency.support = localSupport;
 		constituency.mandates = new Array(localSupport.length).fill(0);
@@ -51,7 +50,7 @@ export const calculateMandates = (support: number[]): number[] => {
 			}
 		}
 		quotients.sort((a, b) => b.quotient - a.quotient);
-		quotients.slice(0, constituency.size).forEach(quotient => {
+		quotients.slice(0, constituency.size).forEach((quotient) => {
 			if (quotient.quotient > 0) {
 				mandates[quotient.committeeIndex]++;
 				constituency.mandates![quotient.committeeIndex]++;
@@ -59,4 +58,4 @@ export const calculateMandates = (support: number[]): number[] => {
 		});
 	});
 	return mandates;
-}
+};

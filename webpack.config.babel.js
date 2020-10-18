@@ -1,4 +1,5 @@
 import path from 'path';
+import ESLintPlugin from 'eslint-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import LiveReloadPlugin from 'webpack-livereload-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
@@ -19,17 +20,6 @@ export default {
 				test: /\.ts$/,
 				exclude: /node_modules/,
 				use: 'babel-loader',
-			},
-			{
-				test: /\.ts$/,
-				exclude: /node_modules/,
-				enforce: 'pre',
-				use: {
-					loader: 'eslint-loader',
-					options: {
-						configFile: __dirname + '/.eslintrc.json',
-					},
-				}
 			},
 			{
 				test: /\.pug$/,
@@ -56,16 +46,19 @@ export default {
 						},
 					},
 				],
-			}
-		]
+			},
+		],
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: './src/templates/index.pug',
 		}),
 		new MiniCssExtractPlugin({
-			filename: "[name].css",
-			chunkFilename: "[id].css"
+			filename: '[name].css',
+			chunkFilename: '[id].css',
+		}),
+		new ESLintPlugin({
+			files: ['./*.[jt]s', './src/**/*.[jt]s'],
 		}),
 		new StyleLintPlugin({
 			configFile: path.resolve(__dirname, '.stylelintrc.json'),
@@ -75,7 +68,7 @@ export default {
 			quiet: false,
 		}),
 		new LiveReloadPlugin({
-			appendScriptTag: true
+			appendScriptTag: true,
 		}),
 	],
 };

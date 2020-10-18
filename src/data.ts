@@ -2,7 +2,7 @@ import {
 	PastSupport,
 	Committee,
 	Constituency,
- } from './types';
+} from './types';
 
 export const pastSupport: PastSupport = {
 	pis: 43.59,
