@@ -39,11 +39,6 @@ export default {
 					},
 					{
 						loader: 'postcss-loader',
-						options: {
-							config: {
-								path: __dirname + '/postcss.config.js',
-							},
-						},
 					},
 				],
 			},
@@ -64,8 +59,6 @@ export default {
 			configFile: path.resolve(__dirname, '.stylelintrc.json'),
 			context: path.resolve(__dirname, './src'),
 			files: '**/*.css',
-			failOnError: false,
-			quiet: false,
 		}),
 		new LiveReloadPlugin({
 			appendScriptTag: true,
