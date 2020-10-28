@@ -59,10 +59,13 @@ const handleCalculateButtonClick = (event: Event) => {
 		if (td) td.textContent = value.toString();
 	});
 
-	const sortedSupport = committees.slice(0, -1).map((c, i) => ({
-		label: c.shortName,
-		support: {value: support[i], className: c.id},
-	})).sort((a, b) => b.support.value - a.support.value);
+	const sortedSupport = committees
+		.map((c, i) => ({
+			label: c.shortName,
+			support: {value: support[i], className: c.id},
+		}))
+		.filter((s) => s.support.value && s.support.value > 0)
+		.sort((a, b) => b.support.value - a.support.value);
 	const barChartData = {
 		labels: sortedSupport.map((ss) => ss.label),
 		series: sortedSupport.map((ss) => ss.support),
@@ -79,10 +82,13 @@ const handleCalculateButtonClick = (event: Event) => {
 		}
 	});
 
-	const sortedMandates = committees.map((c, i) => ({
-		label: c.shortName,
-		mandates: {value: mandates[i], className: c.id},
-	})).sort((a, b) => b.mandates.value - a.mandates.value);
+	const sortedMandates = committees
+		.map((c, i) => ({
+			label: c.shortName,
+			mandates: {value: mandates[i], className: c.id},
+		}))
+		.filter((m) => m.mandates.value && m.mandates.value > 0)
+		.sort((a, b) => b.mandates.value - a.mandates.value);
 	const pieChartData = {
 		series: sortedMandates.map((sm) => sm.mandates),
 	};

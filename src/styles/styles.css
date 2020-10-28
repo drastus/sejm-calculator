@@ -16,12 +16,23 @@ body {
 	background-color: white;
 }
 
+.updates {
+	margin-top: -10px;
+	list-style-type: none;
+}
+
 h1 {
 	font-size: 1.75rem;
 }
 
-p {
+p,
+li {
 	text-align: justify;
+	line-height: 1.4;
+}
+
+.updates li {
+	margin: 2px 0;
 }
 
 .charts-row {
@@ -138,11 +149,11 @@ h2 {
 }
 
 .pis {
-	stroke: #56e;
+	stroke: #263778;
 }
 
 .ko {
-	stroke: #eb4;
+	stroke: #fca43f;
 }
 
 .lewica {
@@ -150,11 +161,15 @@ h2 {
 }
 
 .psl {
-	stroke: #1c6;
+	stroke: #2ed397;
 }
 
 .konfederacja {
 	stroke: #655;
+}
+
+.pl2050 {
+	stroke: #f9c013;
 }
 
 .mn {
