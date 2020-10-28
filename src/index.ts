@@ -59,9 +59,13 @@ const handleCalculateButtonClick = (event: Event) => {
 		if (td) td.textContent = value.toString();
 	});
 
+	const sortedSupport = committees.slice(0, -1).map((c, i) => ({
+		label: c.shortName,
+		support: {value: support[i], className: c.id},
+	})).sort((a, b) => b.support.value - a.support.value);
 	const barChartData = {
-		labels: committees.map((committee) => committee.shortName).slice(0, -1),
-		series: support,
+		labels: sortedSupport.map((ss) => ss.label),
+		series: sortedSupport.map((ss) => ss.support),
 	};
 	const barChartOptions = {
 		distributeSeries: true,
@@ -75,17 +79,21 @@ const handleCalculateButtonClick = (event: Event) => {
 		}
 	});
 
+	const sortedMandates = committees.map((c, i) => ({
+		label: c.shortName,
+		mandates: {value: mandates[i], className: c.id},
+	})).sort((a, b) => b.mandates.value - a.mandates.value);
 	const pieChartData = {
-		series: mandates,
+		series: sortedMandates.map((sm) => sm.mandates),
 	};
 	const pieChartOptions = {
 		donut: true,
 		donutWidth: 60,
 		startAngle: 270,
 		total: 460 * 2,
-		labelInterpolationFnc: (value: number) => {
-			return value < 15 ? '' : String(value);
-		},
+		labelInterpolationFnc: (value: number, index: number) => (
+			value < 15 ? '' : `${sortedMandates[index].label} ${value}`
+		),
 	};
 	const pie = new Chartist.Pie('#division-pie-chart', pieChartData, pieChartOptions);
 
@@ -97,8 +105,8 @@ const handleCalculateButtonClick = (event: Event) => {
 };
 
 const generateTable = () => {
-	const form = document.getElementById('support-form');
-	form!.insertAdjacentHTML('afterbegin', tableTemplate({
+	const form: HTMLElement = document.getElementById('support-form')!;
+	form.insertAdjacentHTML('afterbegin', tableTemplate({
 		committees,
 	}));
 };

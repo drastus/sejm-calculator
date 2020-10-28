@@ -137,29 +137,28 @@ h2 {
 	text-align: right;
 }
 
-.ct-series-a .ct-bar,
-.ct-series-a .ct-slice-donut {
+.pis {
 	stroke: #56e;
 }
 
-.ct-series-b .ct-bar,
-.ct-series-b .ct-slice-donut {
+.ko {
 	stroke: #eb4;
 }
 
-.ct-series-c .ct-bar,
-.ct-series-c .ct-slice-donut {
+.lewica {
 	stroke: #d44;
 }
 
-.ct-series-d .ct-bar,
-.ct-series-d .ct-slice-donut {
+.psl {
 	stroke: #1c6;
 }
 
-.ct-series-e .ct-bar,
-.ct-series-e .ct-slice-donut {
+.konfederacja {
 	stroke: #655;
+}
+
+.mn {
+	stroke: #aaa;
 }
 
 footer {
