@@ -1,13 +1,13 @@
 import Chartist, {ChartistStatic, IChartistSvg} from 'chartist';
 import {committees, constituencies} from './data';
-import {calculateMandates} from './mandates';
+import calculateMandates from './mandates';
 import constituencyTemplate from './templates/constituency.pug';
 import tableTemplate from './templates/table.pug';
 import './styles/styles.css';
 
 const clearResults = (bar: ChartistStatic['Bar'], pie: ChartistStatic['Pie']) => {
 	document.querySelectorAll<HTMLTableDataCellElement>('tr td:last-child').forEach((td) => {
-		td.innerHTML = '';
+		td.innerHTML = ''; // eslint-disable-line no-param-reassign
 	});
 	bar.detach();
 	pie.detach();
@@ -47,9 +47,8 @@ const handleCalculateButtonClick = (event: Event) => {
 	if (support.reduce((a, b) => a + b, 0) > 100) {
 		inputs.forEach((input) => input.setCustomValidity('Suma poparcia nie może przekraczać 100%'));
 		return;
-	} else {
-		inputs.forEach((input) => input.setCustomValidity(''));
 	}
+	inputs.forEach((input) => input.setCustomValidity(''));
 	if (!document.querySelector<HTMLFormElement>('#support-form')!.checkValidity()) return;
 	const mandates = calculateMandates(support);
 

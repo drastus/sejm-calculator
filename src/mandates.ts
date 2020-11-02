@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import {committees, constituencies, pastSupport} from './data';
 import {Constituency} from './types';
 
@@ -25,7 +26,7 @@ const calculateLocalSupport = (
 	return localSupport;
 };
 
-export const calculateMandates = (support: number[]): number[] => {
+export default (support: number[]): number[] => {
 	const pastSupportProjection = support.map((committeeSupport, index) => (
 		committees[index].pastSupportEquivalence
 			.map((pastCommittee) => pastSupport[pastCommittee[0]] * pastCommittee[1])
@@ -41,8 +42,8 @@ export const calculateMandates = (support: number[]): number[] => {
 			return localCommitteeSupport;
 		});
 		const quotients: {quotient: number; committeeIndex: number}[] = [];
-		for (let divisor = 1; divisor <= constituency.size; divisor++) {
-			for (let committeeIndex = 0; committeeIndex < localSupport.length; committeeIndex++) {
+		for (let divisor = 1; divisor <= constituency.size; divisor += 1) {
+			for (let committeeIndex = 0; committeeIndex < localSupport.length; committeeIndex += 1) {
 				quotients.push({
 					quotient: filteredLocalSupport[committeeIndex] / divisor,
 					committeeIndex,
@@ -52,8 +53,8 @@ export const calculateMandates = (support: number[]): number[] => {
 		quotients.sort((a, b) => b.quotient - a.quotient);
 		quotients.slice(0, constituency.size).forEach((quotient) => {
 			if (quotient.quotient > 0) {
-				mandates[quotient.committeeIndex]++;
-				constituency.mandates![quotient.committeeIndex]++;
+				mandates[quotient.committeeIndex] += 1;
+				constituency.mandates![quotient.committeeIndex] += 1;
 			}
 		});
 	});
