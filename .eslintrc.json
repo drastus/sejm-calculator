@@ -36,6 +36,8 @@
 				"plugin:@typescript-eslint/recommended"
 			],
 			"rules": {
+				"indent": "off",
+				"@typescript-eslint/indent": ["error", "tab"],
 				"@typescript-eslint/explicit-function-return-type": "off",
 				"@typescript-eslint/no-non-null-assertion": "off"
 			}
