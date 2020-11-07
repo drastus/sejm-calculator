@@ -5,15 +5,30 @@ import constituencyTemplate from './templates/constituency.pug';
 import tableTemplate from './templates/table.pug';
 import './styles/styles.css';
 
-const clearResults = (bar: ChartistStatic['Bar'], pie: ChartistStatic['Pie']) => {
-	document.querySelectorAll<HTMLTableDataCellElement>('tr td:last-child').forEach((td) => {
-		td.innerHTML = ''; // eslint-disable-line no-param-reassign
+let barChart: ChartistStatic['Bar'];
+let pieChart: ChartistStatic['Pie'];
+
+const clearInputs = () => {
+	const inputs = document.querySelectorAll<HTMLInputElement>('tr td:nth-child(2) input');
+	inputs.forEach((input) => {
+		input.value = '';
 	});
-	bar.detach();
-	pie.detach();
+};
+
+const clearResults = () => {
+	document.querySelectorAll<HTMLTableDataCellElement>('tr td:last-child').forEach((td) => {
+		td.innerHTML = '';
+	});
+	barChart.detach();
+	pieChart.detach();
+	document.getElementById('url')!.innerHTML = '';
 	document.getElementById('support-bar-chart')!.innerHTML = '';
 	document.getElementById('division-pie-chart')!.innerHTML = '';
 	document.getElementById('constituency-results')!.innerHTML = '';
+	if (window.location.search) {
+		const urlWithoutSearchString = window.location.href.split('?')[0];
+		window.history.pushState('', '', urlWithoutSearchString);
+	}
 };
 
 const displayResults = (mandates: number[]) => {
@@ -29,7 +44,8 @@ const displayUrl = (support: number[]) => {
 	support.forEach((s, i) => {
 		if (s > 0) searchParams.append(committees[i].id, s.toString());
 	});
-	const url = `${window.location.href}?${searchParams}`;
+	const urlWithoutSearchString = window.location.href.split('?')[0];
+	const url = `${urlWithoutSearchString}?${searchParams}`;
 	document.getElementById('url')!.innerHTML = `Link do wyników: ${url.link(url)}`;
 };
 
@@ -41,22 +57,22 @@ const displayBarChart = (support: number[]) => {
 		}))
 		.filter((s) => s.support.value && s.support.value > 0)
 		.sort((a, b) => b.support.value - a.support.value);
-	const barChartData = {
+	const chartData = {
 		labels: sortedSupport.map((ss) => ss.label),
 		series: sortedSupport.map((ss) => ss.support),
 	};
-	const barChartOptions = {
+	const chartOptions = {
 		distributeSeries: true,
 	};
-	const barChart = new Chartist.Bar('#support-bar-chart', barChartData, barChartOptions);
-	barChart.on('draw', (data: {type: string; element: IChartistSvg}) => {
+	const chart = new Chartist.Bar('#support-bar-chart', chartData, chartOptions);
+	chart.on('draw', (data: {type: string; element: IChartistSvg}) => {
 		if (data.type === 'bar') {
 			data.element.attr({
 				style: 'stroke-width: 30px',
 			});
 		}
 	});
-	return barChart;
+	return chart;
 };
 
 const displayPieChart = (mandates: number[]) => {
@@ -67,10 +83,10 @@ const displayPieChart = (mandates: number[]) => {
 		}))
 		.filter((m) => m.mandates.value && m.mandates.value > 0)
 		.sort((a, b) => b.mandates.value - a.mandates.value);
-	const pieChartData = {
+	const chartData = {
 		series: sortedMandates.map((sm) => sm.mandates),
 	};
-	const pieChartOptions = {
+	const chartOptions = {
 		donut: true,
 		donutWidth: 60,
 		startAngle: 270,
@@ -79,7 +95,7 @@ const displayPieChart = (mandates: number[]) => {
 			value < 15 ? '' : `${sortedMandates[index].label} ${value}`
 		),
 	};
-	return new Chartist.Pie('#division-pie-chart', pieChartData, pieChartOptions);
+	return new Chartist.Pie('#division-pie-chart', chartData, chartOptions);
 };
 
 const displayConstituencyResults = () => {
@@ -132,14 +148,14 @@ const calculate = () => {
 
 	displayUrl(support);
 
-	const barChart = displayBarChart(support);
+	barChart = displayBarChart(support);
 
-	const pieChart = displayPieChart(mandates);
+	pieChart = displayPieChart(mandates);
 
 	displayConstituencyResults();
 
 	inputs.forEach((input) => input.addEventListener('input', () => {
-		clearResults(barChart, pieChart);
+		clearResults();
 	}));
 };
 
@@ -176,4 +192,13 @@ document.addEventListener('DOMContentLoaded', () => {
 	generateTable();
 	loadResultsFromUrl();
 	bindActions();
+});
+
+window.addEventListener('popstate', () => {
+	if (window.location.search) {
+		loadResultsFromUrl();
+	} else {
+		clearInputs();
+		clearResults();
+	}
 });

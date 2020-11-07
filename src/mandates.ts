@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import {committees, constituencies, pastSupport} from './data';
 import {Constituency} from './types';
 

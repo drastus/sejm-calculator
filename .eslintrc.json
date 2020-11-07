@@ -22,6 +22,7 @@
 		"indent": ["error", "tab"],
 		"no-tabs": "off",
 		"object-curly-spacing": ["error", "never"],
+		"no-param-reassign": ["error", {"props": false}],
 		"import/extensions": ["error", "ignorePackages", {
 			"js": "never",
 			"ts": "never"
