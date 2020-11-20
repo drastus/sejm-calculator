@@ -5,6 +5,8 @@ import constituencyTemplate from './templates/constituency.pug';
 import tableTemplate from './templates/table.pug';
 import './styles/styles.css';
 
+const {location} = window;
+
 let barChart: ChartistStatic['Bar'];
 let pieChart: ChartistStatic['Pie'];
 
@@ -25,8 +27,8 @@ export const clearResults = (): void => {
 	document.getElementById('support-bar-chart')!.innerHTML = '';
 	document.getElementById('division-pie-chart')!.innerHTML = '';
 	document.getElementById('constituency-results')!.innerHTML = '';
-	if (window.location.search) {
-		const urlWithoutSearchString = window.location.href.split('?')[0];
+	if (location.search) {
+		const urlWithoutSearchString = location.href.split('?')[0];
 		window.history.pushState('', '', urlWithoutSearchString);
 	}
 };
@@ -44,7 +46,7 @@ const displayUrl = (support: number[]) => {
 	support.forEach((s, i) => {
 		if (s > 0) searchParams.append(committees[i].id, s.toString());
 	});
-	const urlWithoutSearchString = window.location.href.split('?')[0];
+	const urlWithoutSearchString = location.href.split('?')[0];
 	const url = `${urlWithoutSearchString}?${searchParams}`;
 	document.getElementById('url')!.innerHTML = `Link do wyników: ${url.link(url)}`;
 };
@@ -167,8 +169,8 @@ export const generateTable = (): void => {
 };
 
 export const loadResultsFromUrl = (): void => {
-	if (window.location.search) {
-		const searchParams = new URLSearchParams(window.location.search);
+	if (location.search) {
+		const searchParams = new URLSearchParams(location.search);
 		searchParams.forEach((value, key) => {
 			const input = document.querySelector<HTMLInputElement>(`tr.${key} td:nth-child(2) input`);
 			if (input) input.value = value;
