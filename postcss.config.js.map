@@ -1,1 +1,0 @@
-{"version":3,"file":"postcss.config.js","sourceRoot":"","sources":["../postcss.config.js"],"names":[],"mappings":";AAAA,MAAM,CAAC,OAAO,GAAG;IAChB,OAAO,EAAE;QACR,gBAAgB,EAAE,EAAE;QACpB,oBAAoB,EAAE;YACrB,QAAQ,EAAE,iBAAiB;SAC3B;QACD,SAAS,EAAE,EAAE;KACb;CACC,CAAC"}
