@@ -1,12 +1,12 @@
 {
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
-		"module": "es6",
+		"esModuleInterop": true,
 		"moduleResolution": "node",
 		"outDir": "./dist/",
 		"removeComments": true,
 		"sourceMap": true,
 		"strict": true,
-		"target": "es5"
+		"target": "ES5"
 	}
 }
