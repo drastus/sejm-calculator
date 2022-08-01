@@ -120,40 +120,43 @@ const displayConstituencyResults = () => {
 	});
 };
 
-const validate = (inputs: NodeListOf<HTMLInputElement>, support: number[]) => {
-	const supportSum = support.reduce((a, b) => a + b, 0);
-	if (supportSum > 100) {
-		inputs.forEach((input) => input.setCustomValidity('Suma poparcia nie może przekraczać 100%'));
-		return false;
-	}
-	if (supportSum <= 0) {
-		inputs.forEach((input) => input.setCustomValidity('Suma poparcia musi być wyższa niż 0%'));
-		return false;
-	}
+const validate = (form: HTMLFormElement, inputs: NodeListOf<HTMLInputElement>, support: number[]) => {
 	inputs.forEach((input) => input.setCustomValidity(''));
 
-	return document.querySelector<HTMLFormElement>('#support-form')!.checkValidity();
+	support.some((inputValue, index) => {
+		if (inputValue < 0) {
+			inputs[index].setCustomValidity('Poparcie nie może byc mniejsze od 0%');
+			return true;
+		}
+		return false;
+	});
+
+	const supportSum = support.reduce((a, b) => a + b, 0);
+	if (supportSum > 100) {
+		inputs[0].setCustomValidity('Suma poparcia nie może przekraczać 100%');
+	} else if (supportSum <= 0) {
+		inputs[0].setCustomValidity('Suma poparcia musi być wyższa niż 0%');
+	}
+
+	return form.reportValidity();
 };
 
 export const calculate = (): void => {
+	const form = document.querySelector<HTMLFormElement>('#support-form')!;
 	const inputs = document.querySelectorAll<HTMLInputElement>('#support-form input');
 	const support = Array
 		.from(inputs)
 		.map((input) => parseFloat(input.value))
 		.map((value) => (Number.isNaN(value) ? 0 : value));
 
-	if (!validate(inputs, support)) return;
+	if (!validate(form, inputs, support)) return;
 
 	const mandates = calculateMandates(support);
 
 	displayResults(mandates);
-
 	displayUrl(support);
-
 	barChart = displayBarChart(support);
-
 	pieChart = displayPieChart(mandates);
-
 	displayConstituencyResults();
 
 	inputs.forEach((input) => input.addEventListener('input', () => {
