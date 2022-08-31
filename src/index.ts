@@ -11,7 +11,7 @@ const handleCalculateButtonClick = (event: Event) => {
 	calculate();
 };
 
-const bindActions = () => {
+export const bindActions = (): void => {
 	document
 		.querySelector('#calculate-button')!
 		.addEventListener('click', handleCalculateButtonClick);
