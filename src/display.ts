@@ -18,7 +18,7 @@ export const clearInputs = (): void => {
 };
 
 export const clearResults = (): void => {
-	document.querySelectorAll<HTMLTableDataCellElement>('tr td:last-child').forEach((td) => {
+	document.querySelectorAll<HTMLTableCellElement>('tr td:last-child').forEach((td) => {
 		td.innerHTML = '';
 	});
 	barChart.detach();
@@ -36,7 +36,7 @@ export const clearResults = (): void => {
 const displayResults = (mandates: number[]) => {
 	mandates.forEach((value, index) => {
 		const committeeId = committees[index].id;
-		const td = document.querySelector<HTMLTableDataCellElement>(`tr.${committeeId} td:last-child`);
+		const td = document.querySelector<HTMLTableCellElement>(`tr.${committeeId} td:last-child`);
 		if (td) td.textContent = value.toString();
 	});
 };

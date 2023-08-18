@@ -13,3 +13,10 @@ test('calculates correct results (2)', () => {
 
 	expect(mandates).toEqual([182, 133, 40, 34, 12, 58, 1]);
 });
+
+test('calculates correct results (3)', () => {
+	const support = [39.7, 42.4, 0, 0, 7.2, 0];
+	const mandates = calculateMandates(support);
+
+	expect(mandates).toEqual([225, 216, 0, 0, 18, 0, 1]);
+});
