@@ -2,11 +2,11 @@
 import path from 'path';
 import ESLintPlugin from 'eslint-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import LiveReloadPlugin from 'webpack-livereload-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import StyleLintPlugin from 'stylelint-webpack-plugin';
 
 export default {
+	target: 'web',
 	entry: './src/index.ts',
 	output: {
 		filename: 'bundle.js',
@@ -25,7 +25,7 @@ export default {
 			{
 				test: /\.pug$/,
 				exclude: /node_modules/,
-				use: 'pug-loader',
+				use: '@webdiscus/pug-loader',
 			},
 			{
 				test: /\.css$/,
@@ -61,8 +61,8 @@ export default {
 			context: path.resolve(__dirname, './src'),
 			files: '**/*.css',
 		}),
-		new LiveReloadPlugin({
-			appendScriptTag: true,
-		}),
 	],
+	devServer: {
+		watchFiles: ['src/**/*'],
+	},
 };

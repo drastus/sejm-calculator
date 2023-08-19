@@ -1,4 +1,4 @@
-import Chartist, {ChartistStatic, IChartistSvg} from 'chartist';
+import {BarChart, PieChart} from 'chartist';
 import {committees, constituencies} from './data';
 import calculateMandates from './mandates';
 import constituencyTemplate from './templates/constituency.pug';
@@ -7,8 +7,8 @@ import './styles/styles.css';
 
 const {location} = window;
 
-let barChart: ChartistStatic['Bar'];
-let pieChart: ChartistStatic['Pie'];
+let barChart: BarChart | null = null;
+let pieChart: PieChart | null = null;
 
 export const clearInputs = (): void => {
 	const inputs = document.querySelectorAll<HTMLInputElement>('tr td:nth-child(2) input');
@@ -21,8 +21,8 @@ export const clearResults = (): void => {
 	document.querySelectorAll<HTMLTableCellElement>('tr td:last-child').forEach((td) => {
 		td.innerHTML = '';
 	});
-	barChart.detach();
-	pieChart.detach();
+	if (barChart) barChart.detach();
+	if (pieChart) pieChart.detach();
 	document.getElementById('url')!.innerHTML = '';
 	document.getElementById('support-bar-chart')!.innerHTML = '';
 	document.getElementById('division-pie-chart')!.innerHTML = '';
@@ -66,8 +66,8 @@ const displayBarChart = (support: number[]) => {
 	const chartOptions = {
 		distributeSeries: true,
 	};
-	const chart = new Chartist.Bar('#support-bar-chart', chartData, chartOptions);
-	chart.on('draw', (data: {type: string; element: IChartistSvg}) => {
+	const chart = new BarChart('#support-bar-chart', chartData, chartOptions);
+	chart.on<'draw'>('draw', (data) => {
 		if (data.type === 'bar') {
 			data.element.attr({
 				style: 'stroke-width: 30px',
@@ -97,7 +97,7 @@ const displayPieChart = (mandates: number[]) => {
 			value < 15 ? '' : `${sortedMandates[index].label} ${value}`
 		),
 	};
-	return new Chartist.Pie('#division-pie-chart', chartData, chartOptions);
+	return new PieChart('#division-pie-chart', chartData, chartOptions);
 };
 
 const displayConstituencyResults = () => {

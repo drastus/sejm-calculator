@@ -1,5 +1,5 @@
-@import 'modern-normalize/modern-normalize.css';
-@import 'chartist/dist/chartist.min.css';
+@import url('modern-normalize/modern-normalize.css');
+@import url('chartist/dist/index.css');
 
 body {
 	color: #333;
@@ -54,7 +54,7 @@ li {
 	fill: white;
 }
 
-@media (max-width: 500px) {
+@media (width <= 500px) {
 	.charts-row {
 		flex-wrap: wrap;
 	}
