@@ -65,6 +65,12 @@ const displayBarChart = (support: number[]) => {
 	};
 	const chartOptions = {
 		distributeSeries: true,
+		axisY: {
+			labelInterpolationFnc: (value: number) => `${value.toLocaleString('pl', {
+				minimumFractionDigits: 0,
+				maximumFractionDigits: 1,
+			})}%`,
+		},
 	};
 	const chart = new BarChart('#support-bar-chart', chartData, chartOptions);
 	chart.on<'draw'>('draw', (data) => {
