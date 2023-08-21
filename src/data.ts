@@ -35,11 +35,11 @@ export const committees: Committee[] = [
 		pastSupportEquivalence: [['lewica', 1]],
 	},
 	{
-		id: 'psl',
-		name: 'PSL – Koalicja Polska',
-		shortName: 'PSL',
-		threshold: 5,
-		pastSupportEquivalence: [['psl', 1]],
+		id: 'td',
+		name: 'Trzecia Droga',
+		shortName: 'TD',
+		threshold: 8,
+		pastSupportEquivalence: [['psl', 0.48], ['lewica', 0.23], ['konfederacja', 0.17], ['ko', 0.15], ['pis', 0.03]],
 	},
 	{
 		id: 'konfederacja',
@@ -47,13 +47,6 @@ export const committees: Committee[] = [
 		shortName: 'Konf.',
 		threshold: 5,
 		pastSupportEquivalence: [['konfederacja', 1]],
-	},
-	{
-		id: 'pl2050',
-		name: 'Polska 2050',
-		shortName: 'PL2050',
-		threshold: 5,
-		pastSupportEquivalence: [['psl', 0.24], ['lewica', 0.23], ['konfederacja', 0.17], ['ko', 0.15], ['pis', 0.03]],
 	},
 	{
 		id: 'mn',
