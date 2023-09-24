@@ -23,10 +23,12 @@ export const clearResults = (): void => {
 	});
 	if (barChart) barChart.detach();
 	if (pieChart) pieChart.detach();
-	document.getElementById('url')!.innerHTML = '';
+	const urlContainer = document.getElementById('url');
+	if (urlContainer) urlContainer.innerHTML = '';
 	document.getElementById('support-bar-chart')!.innerHTML = '';
 	document.getElementById('division-pie-chart')!.innerHTML = '';
-	document.getElementById('constituency-results')!.innerHTML = '';
+	const constituencyResultContainer = document.getElementById('constituency-results');
+	if (constituencyResultContainer) constituencyResultContainer.innerHTML = '';
 	if (location.search) {
 		const urlWithoutSearchString = location.href.split('?')[0];
 		window.history.pushState('', '', urlWithoutSearchString);
@@ -42,13 +44,16 @@ const displayResults = (mandates: number[]) => {
 };
 
 const displayUrl = (support: number[]) => {
-	const searchParams = new URLSearchParams();
-	support.forEach((s, i) => {
-		if (s > 0) searchParams.append(committees[i].id, s.toString());
-	});
-	const urlWithoutSearchString = location.href.split('?')[0];
-	const url = `${urlWithoutSearchString}?${searchParams}`;
-	document.getElementById('url')!.innerHTML = `Link do wyników: ${url.link(url)}`;
+	const container = document.getElementById('url');
+	if (container) {
+		const searchParams = new URLSearchParams();
+		support.forEach((s, i) => {
+			if (s > 0) searchParams.append(committees[i].id, s.toString());
+		});
+		const urlWithoutSearchString = location.href.split('?')[0];
+		const url = `${urlWithoutSearchString}?${searchParams}`;
+		document.getElementById('url')!.innerHTML = `Link do wyników: ${url.link(url)}`;
+	}
 };
 
 const displayBarChart = (support: number[]) => {
@@ -108,22 +113,24 @@ const displayPieChart = (mandates: number[]) => {
 
 const displayConstituencyResults = () => {
 	const container = document.getElementById('constituency-results');
-	constituencies.forEach((constituency, constituenyIndex) => {
-		const data = (constituency.mandates && constituency.support)
-			? constituency.mandates.map((mandates, committeeIndex) => ({
-				committee: committees[committeeIndex].name,
-				support: (constituency.support as number[])[committeeIndex],
-				mandates,
-			}))
-			: [];
-		data.sort((a, b) => b.support - a.support);
-		container!.insertAdjacentHTML('beforeend', constituencyTemplate({
-			number: constituenyIndex + 1,
-			name: constituency.name,
-			size: constituency.size,
-			data,
-		}));
-	});
+	if (container) {
+		constituencies.forEach((constituency, constituenyIndex) => {
+			const data = (constituency.mandates && constituency.support)
+				? constituency.mandates.map((mandates, committeeIndex) => ({
+					committee: committees[committeeIndex].name,
+					support: (constituency.support as number[])[committeeIndex],
+					mandates,
+				}))
+				: [];
+			data.sort((a, b) => b.support - a.support);
+			container.insertAdjacentHTML('beforeend', constituencyTemplate({
+				number: constituenyIndex + 1,
+				name: constituency.name,
+				size: constituency.size,
+				data,
+			}));
+		});
+	}
 };
 
 const validate = (form: HTMLFormElement, inputs: NodeListOf<HTMLInputElement>, support: number[]) => {

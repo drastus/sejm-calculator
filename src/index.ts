@@ -5,6 +5,13 @@ import {
 	clearInputs,
 	clearResults,
 } from './display';
+import contentTemplate from './templates/content.pug';
+
+const loadContent = () => {
+	document.body.innerHTML = contentTemplate({
+		embed: window.location.hash === '#embed',
+	});
+};
 
 const handleCalculateButtonClick = (event: Event) => {
 	event.preventDefault();
@@ -18,6 +25,7 @@ export const bindActions = (): void => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+	loadContent();
 	generateTable();
 	loadResultsFromUrl();
 	bindActions();
@@ -30,4 +38,10 @@ window.addEventListener('popstate', () => {
 		clearInputs();
 		clearResults();
 	}
+});
+
+window.addEventListener('hashchange', () => {
+	loadContent();
+	generateTable();
+	loadResultsFromUrl();
 });

@@ -1,38 +1,42 @@
-h1 Kalkulator mandatów w wyborach do Sejmu
+div(class=(embed ? 'container embed' : 'container'))
+	unless embed
+		h1 Kalkulator mandatów w wyborach do Sejmu
 
-p.
-	Kalkulator zwraca szacowany rozkład mandatów w Sejmie na podstawie wyników sondażowych.
-	Obliczenia są dokonywane zgodnie z obowiązującą w Polsce ordynacją wyborczą, tj. stosując
-	metodę D’Hondta osobno w każdym z 41 okręgów wyborczych.
-p.
-	Dodatkowo poparcie dla poszczególnych komitetów w okręgach jest różnicowane na podstawie
-	szczegółowych wyników ostatnich wyborów parlamentarnych. Ugrupowanie, które w danym okręgu miało
-	wtedy poparcie wyższe/niższe niż w całym kraju, również w tej symulacji będzie miało w tym
-	okręgu odpowiednio wyższe/niższe poparcie. Pozwala to na sporządzenie szczegółowej prognozy
-	podziału mandatów na poziomie poszczególnych okręgów.
-p Aktualizacje:
-ol.updates
-	li.
-		2019-11-15: od teraz w prognozie brane są pod uwagę wyniki wyborów do Sejmu z 2019 roku.
-	li.
-		2020-10-28: dodano partię polityczną Polska 2050; jej prognozowane poparcie w okręgach jest
-		liczone na podstawie deklaracji wyborców Szymona Hołowni przedstawionych w artykule
-		#[a(href='https://biqdata.wyborcza.pl/biqdata/7,159116,26083709,analiza-przeplywow-wyborcow-za-duda-tylko-pis-lewicowcy-nie.html') #[i Analiza przepływów wyborców]] z 29 czerwca 2020 roku.
-	li.
-		2023-08-21: dodano koalicyjny komitet wyborczy Trzecia Droga (Polska 2050 + PSL – Koalicja Polska).
+		p.
+			Kalkulator zwraca szacowany rozkład mandatów w Sejmie na podstawie wyników sondażowych.
+			Obliczenia są dokonywane zgodnie z obowiązującą w Polsce ordynacją wyborczą, tj. stosując
+			metodę D’Hondta osobno w każdym z 41 okręgów wyborczych.
+		p.
+			Dodatkowo poparcie dla poszczególnych komitetów w okręgach jest różnicowane na podstawie
+			szczegółowych wyników ostatnich wyborów parlamentarnych. Ugrupowanie, które w danym okręgu miało
+			wtedy poparcie wyższe/niższe niż w całym kraju, również w tej symulacji będzie miało w tym
+			okręgu odpowiednio wyższe/niższe poparcie. Pozwala to na sporządzenie szczegółowej prognozy
+			podziału mandatów na poziomie poszczególnych okręgów.
+		p Aktualizacje:
+		ol.updates
+			li.
+				2019-11-15: od teraz w prognozie brane są pod uwagę wyniki wyborów do Sejmu z 2019 roku.
+			li.
+				2020-10-28: dodano partię polityczną Polska 2050; jej prognozowane poparcie w okręgach jest
+				liczone na podstawie deklaracji wyborców Szymona Hołowni przedstawionych w artykule
+				#[a(href='https://biqdata.wyborcza.pl/biqdata/7,159116,26083709,analiza-przeplywow-wyborcow-za-duda-tylko-pis-lewicowcy-nie.html') #[i Analiza przepływów wyborców]] z 29 czerwca 2020 roku.
+			li.
+				2023-08-21: dodano koalicyjny komitet wyborczy Trzecia Droga (Polska 2050 + PSL – Koalicja Polska).
 
 
-form#support-form
-	button#calculate-button Oblicz
+	form#support-form
+		button#calculate-button Oblicz
 
-#url
+	unless embed
+		#url
 
-.charts-row
-	#support-bar-chart.ct-chart.ct-perfect-fourth
-	#division-pie-chart.ct-chart.ct-perfect-fourth
+	.charts-row
+		#support-bar-chart.ct-chart.ct-perfect-fourth
+		#division-pie-chart.ct-chart.ct-perfect-fourth
 
-#constituency-results
+	unless embed
+		#constituency-results
 
-footer
-	a.github(href='https://github.com/drastus/sejm-calculator') Kod źródłowy
-	address Kontakt: zrchos na serwerze gmail.com
+		footer
+			a.github(href='https://github.com/drastus/sejm-calculator') Kod źródłowy
+			address Kontakt: zrchos na serwerze gmail.com

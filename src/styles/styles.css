@@ -16,6 +16,11 @@ body {
 	background-color: white;
 }
 
+.embed {
+	margin: 0 auto;
+	padding: 0.25rem auto 1rem;
+}
+
 .updates {
 	margin-top: -10px;
 	list-style-type: none;

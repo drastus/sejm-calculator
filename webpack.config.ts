@@ -64,5 +64,12 @@ export default {
 	],
 	devServer: {
 		watchFiles: ['src/**/*'],
+		client: {
+			overlay: {
+				warnings: false,
+				errors: true,
+				runtimeErrors: true,
+			},
+		},
 	},
 };
