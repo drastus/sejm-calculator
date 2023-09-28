@@ -29,8 +29,8 @@ export const committees: Committee[] = [
 	},
 	{
 		id: 'lewica',
-		name: 'Lewica',
-		shortName: 'Lew.',
+		name: 'Nowa Lewica',
+		shortName: 'NL',
 		threshold: 5,
 		pastSupportEquivalence: [['lewica', 1]],
 	},
@@ -55,6 +55,15 @@ export const committees: Committee[] = [
 		threshold: 0,
 		pastSupportEquivalence: [],
 	},
+];
+
+export const benchSort = [
+	'lewica',
+	'ko',
+	'mn',
+	'td',
+	'pis',
+	'konfederacja',
 ];
 
 export const constituencies: Constituency[] = [

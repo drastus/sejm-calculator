@@ -1,5 +1,5 @@
 import {BarChart, PieChart} from 'chartist';
-import {committees, constituencies} from './data';
+import {benchSort, committees, constituencies} from './data';
 import calculateMandates from './mandates';
 import constituencyTemplate from './templates/constituency.pug';
 import tableTemplate from './templates/table.pug';
@@ -89,15 +89,16 @@ const displayBarChart = (support: number[]) => {
 };
 
 const displayPieChart = (mandates: number[]) => {
-	const sortedMandates = committees
+	const commiteesWithMandates = committees
 		.map((c, i) => ({
+			id: c.id,
 			label: c.shortName,
 			mandates: {value: mandates[i], className: c.id},
 		}))
-		.filter((m) => m.mandates.value && m.mandates.value > 0)
-		.sort((a, b) => b.mandates.value - a.mandates.value);
+		.filter((m) => m.mandates.value && m.mandates.value > 0);
+	commiteesWithMandates.sort((a, b) => (benchSort.indexOf(a.id) > benchSort.indexOf(b.id) ? 1 : -1));
 	const chartData = {
-		series: sortedMandates.map((sm) => sm.mandates),
+		series: commiteesWithMandates.map((sm) => sm.mandates),
 	};
 	const chartOptions = {
 		donut: true,
@@ -105,7 +106,7 @@ const displayPieChart = (mandates: number[]) => {
 		startAngle: 270,
 		total: 460 * 2,
 		labelInterpolationFnc: (value: number, index: number) => (
-			value < 15 ? '' : `${sortedMandates[index].label} ${value}`
+			value < 15 ? '' : `${commiteesWithMandates[index].label} ${value}`
 		),
 	};
 	return new PieChart('#division-pie-chart', chartData, chartOptions);
