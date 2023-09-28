@@ -77,6 +77,7 @@ const displayBarChart = (support: number[]) => {
 			})}%`,
 		},
 	};
+	document.getElementById('support-bar-chart')!.classList.add('ct-perfect-fourth');
 	const chart = new BarChart('#support-bar-chart', chartData, chartOptions);
 	chart.on<'draw'>('draw', (data) => {
 		if (data.type === 'bar') {
@@ -109,6 +110,7 @@ const displayPieChart = (mandates: number[]) => {
 			value < 15 ? '' : `${commiteesWithMandates[index].label} ${value}`
 		),
 	};
+	document.getElementById('division-pie-chart')!.classList.add('ct-perfect-fourth');
 	return new PieChart('#division-pie-chart', chartData, chartOptions);
 };
 
