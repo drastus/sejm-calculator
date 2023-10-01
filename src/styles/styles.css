@@ -181,6 +181,10 @@ h2 {
 	stroke: #aaa;
 }
 
+.bar-value {
+	font-size: 12px;
+}
+
 footer {
 	display: flex;
 	flex-wrap: wrap;

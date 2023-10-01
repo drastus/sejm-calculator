@@ -1,4 +1,4 @@
-import {BarChart, PieChart} from 'chartist';
+import {BarChart, PieChart, Svg} from 'chartist';
 import {benchSort, committees, constituencies} from './data';
 import calculateMandates from './mandates';
 import constituencyTemplate from './templates/constituency.pug';
@@ -9,6 +9,11 @@ const {location} = window;
 
 let barChart: BarChart | null = null;
 let pieChart: PieChart | null = null;
+
+const displayPercent = (value: number) => `${value.toLocaleString('pl', {
+	minimumFractionDigits: 0,
+	maximumFractionDigits: 1,
+})}%`;
 
 export const clearInputs = (): void => {
 	const inputs = document.querySelectorAll<HTMLInputElement>('tr td:nth-child(2) input');
@@ -71,10 +76,7 @@ const displayBarChart = (support: number[]) => {
 	const chartOptions = {
 		distributeSeries: true,
 		axisY: {
-			labelInterpolationFnc: (value: number) => `${value.toLocaleString('pl', {
-				minimumFractionDigits: 0,
-				maximumFractionDigits: 1,
-			})}%`,
+			labelInterpolationFnc: displayPercent,
 		},
 	};
 	document.getElementById('support-bar-chart')!.classList.add('ct-perfect-fourth');
@@ -84,6 +86,13 @@ const displayBarChart = (support: number[]) => {
 			data.element.attr({
 				style: 'stroke-width: 30px',
 			});
+			data.group.append(
+				new Svg(
+					'text',
+					{x: data.x2 + 15, y: data.y2 - 5, 'text-anchor': 'end'},
+					'bar-value',
+				).text(displayPercent((data.value as {y: number}).y)),
+			);
 		}
 	});
 	return chart;
