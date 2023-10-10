@@ -28,6 +28,16 @@ export default {
 				use: '@webdiscus/pug-loader',
 			},
 			{
+				test: /\.svg$/,
+				type: 'asset/resource',
+				generator: {
+					filename: (name: {filename: string}) => {
+						const filePath = name.filename.split('/').slice(1, -1).join('/');
+						return `${filePath}/[name][ext]`;
+					},
+				},
+			},
+			{
 				test: /\.css$/,
 				exclude: /node_modules/,
 				use: [
@@ -65,11 +75,7 @@ export default {
 	devServer: {
 		watchFiles: ['src/**/*'],
 		client: {
-			overlay: {
-				warnings: false,
-				errors: true,
-				runtimeErrors: true,
-			},
+			overlay: false,
 		},
 	},
 };

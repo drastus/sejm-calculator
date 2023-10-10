@@ -7,7 +7,8 @@ body {
 	font-size: 15px;
 }
 
-.container {
+main,
+footer {
 	width: 100%;
 	max-width: 58rem;
 	margin: 1rem auto;
@@ -19,6 +20,10 @@ body {
 .embed {
 	margin: 0 auto;
 	padding: 0.25rem auto 1rem;
+}
+
+.updates-texts {
+	font-size: 13.5px;
 }
 
 .updates {
@@ -44,6 +49,8 @@ li {
 	display: flex;
 	height: auto;
 	margin-bottom: 1rem;
+	z-index: -1;
+	pointer-events: none;
 }
 
 .ct-chart:empty {
@@ -90,40 +97,48 @@ h2 {
 	justify-content: space-around;
 }
 
-#constituency-results::after {
-	content: '';
-	flex: auto;
-	max-width: 26rem;
-	margin: 0.5rem 0;
-	padding: 0.5rem 1rem;
-	border: 1px solid white;
+#constituency-result {
+	flex: 1;
+}
+
+#constituency-result .info {
+	margin-top: 32px;
+	text-align: center;
+}
+
+#constituencies-map {
+	flex: 1;
+	max-width: min(438px, 90vw);
 }
 
 .constituency {
-	display: flex;
-	flex-wrap: wrap;
-	max-width: 26rem;
-	margin: 0.5rem 0;
+	max-width: 25rem;
+	margin: 0.5rem auto;
 	padding: 0.5rem 1rem;
-	border: 1px solid grey;
-}
-
-.constituency-data {
-	width: 11rem;
 }
 
 .constituency table {
-	margin-left: 1rem;
+	border-collapse: collapse;
 }
 
 .constituency p,
+.constituency th,
 .constituency td {
 	font-size: 14px;
 }
 
+.constituency th,
+.constituency td {
+	padding: 4px 12px;
+	border: 1px solid #888;
+	text-align: left;
+}
+
+.constituency th:nth-child(2),
+.constituency th:last-child,
+.constituency td:nth-child(2),
 .constituency td:last-child {
 	width: 2rem;
-	padding-left: 1rem;
 	text-align: right;
 }
 
@@ -149,36 +164,55 @@ h2 {
 	height: 2rem;
 }
 
-#support-form table td:nth-child(2) {
-	white-space: nowrap;
-}
-
 #support-form table td:last-child {
 	text-align: right;
 }
 
+:root {
+	--pis: #31469b;
+	--ko: #fca43f;
+	--lewica: #d44;
+	--td: #8bd32e;
+	--konfederacja: #655;
+	--mn: #aaa;
+}
+
 .pis {
-	stroke: #263778;
+	stroke: var(--pis);
+	fill: var(--pis);
 }
 
 .ko {
-	stroke: #fca43f;
+	stroke: var(--ko);
+	fill: var(--ko);
 }
 
 .lewica {
-	stroke: #d44;
+	stroke: var(--lewica);
+	fill: var(--lewica);
 }
 
 .td {
-	stroke: #8bd32e;
+	stroke: var(--td);
+	fill: var(--td);
 }
 
 .konfederacja {
-	stroke: #655;
+	stroke: var(--konfederacja);
+	fill: var(--konfederacja);
 }
 
 .mn {
-	stroke: #aaa;
+	stroke: var(--mn);
+	fill: var(--mn);
+}
+
+.bright30 {
+	filter: brightness(125%);
+}
+
+.bright50 {
+	filter: brightness(75%);
 }
 
 .bar-value {
@@ -189,7 +223,7 @@ footer {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	margin: 0.5rem 1rem;
+	padding: 1rem 1.5rem;
 }
 
 address {

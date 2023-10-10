@@ -1,8 +1,10 @@
 import {BarChart, PieChart, Svg} from 'chartist';
 import {benchSort, committees, constituencies} from './data';
 import calculateMandates from './mandates';
+import constituencyResultsTemplate from './templates/cresults.pug';
 import constituencyTemplate from './templates/constituency.pug';
 import tableTemplate from './templates/table.pug';
+import constituenciesMap from './images/c41.svg';
 import './styles/styles.css';
 
 const {location} = window;
@@ -33,7 +35,7 @@ export const clearResults = (): void => {
 	document.getElementById('support-bar-chart')!.innerHTML = '';
 	document.getElementById('division-pie-chart')!.innerHTML = '';
 	const constituencyResultContainer = document.getElementById('constituency-results');
-	if (constituencyResultContainer) constituencyResultContainer.innerHTML = '';
+	if (constituencyResultContainer) constituencyResultContainer.innerHTML = constituencyResultsTemplate();
 	if (location.search) {
 		const urlWithoutSearchString = location.href.split('?')[0];
 		window.history.pushState('', '', urlWithoutSearchString);
@@ -126,21 +128,57 @@ const displayPieChart = (mandates: number[]) => {
 const displayConstituencyResults = () => {
 	const container = document.getElementById('constituency-results');
 	if (container) {
-		constituencies.forEach((constituency, constituenyIndex) => {
-			const data = (constituency.mandates && constituency.support)
-				? constituency.mandates.map((mandates, committeeIndex) => ({
-					committee: committees[committeeIndex].name,
-					support: (constituency.support as number[])[committeeIndex],
-					mandates,
-				}))
-				: [];
-			data.sort((a, b) => b.support - a.support);
-			container.insertAdjacentHTML('beforeend', constituencyTemplate({
-				number: constituenyIndex + 1,
-				name: constituency.name,
-				size: constituency.size,
-				data,
-			}));
+		container.innerHTML = constituencyResultsTemplate();
+		const constituencyResult = document.getElementById('constituency-result')!;
+
+		const mapObject = document.getElementById('constituencies-map')! as HTMLObjectElement;
+		mapObject.setAttribute('data', constituenciesMap);
+		mapObject.addEventListener('load', () => {
+			const svgDocument = mapObject.contentDocument!;
+			const constituencyNumber = svgDocument.getElementById('constituency-number')!;
+			const constituencyName = svgDocument.getElementById('constituency-name')!;
+			const paths = svgDocument.querySelectorAll<SVGPathElement>('svg path');
+			paths.forEach((path) => {
+				const cid = parseInt(path.dataset.cid!, 10);
+				const constituency = constituencies[cid - 1];
+				const data = (constituency.mandates && constituency.support)
+					? constituency.mandates.map((mandates, committeeIndex) => ({
+						committee: committees[committeeIndex],
+						support: (constituency.support as number[])[committeeIndex],
+						mandates,
+					}))
+					: [];
+				data.sort((a, b) => b.support - a.support);
+				if (data[0].support === data[1].support) {
+					path.style.fill = 'lightgray';
+				} else {
+					path.classList.add(data[0].committee.id);
+					if (data[0].support >= 50) path.classList.add('bright50');
+					else if (data[0].support < 40) path.classList.add('bright30');
+				}
+
+				path.addEventListener('mouseover', (event) => {
+					const pathElement = event.target as SVGPathElement;
+					pathElement.style.stroke = '#444';
+					constituencyNumber.innerHTML = `Okręg nr ${pathElement.dataset.cid}`;
+					constituencyName.innerHTML = pathElement.dataset.cname as string;
+				});
+				path.addEventListener('mouseout', (event) => {
+					const pathElement = event.target as SVGPathElement;
+					pathElement.style.stroke = '#fff';
+					constituencyNumber.innerHTML = '';
+					constituencyName.innerHTML = '';
+				});
+				path.addEventListener('click', (event) => {
+					(event.target as SVGPathElement).style.stroke = '#ccc';
+					constituencyResult.innerHTML = constituencyTemplate({
+						number: cid,
+						name: constituency.name,
+						size: constituency.size,
+						data,
+					});
+				});
+			});
 		});
 	}
 };

@@ -1,10 +1,14 @@
 .constituency
-	.constituency-data
-		h2 Okręg #{number} #{name}
-		p Łącznie #{size} mandatów
+	h2 Okręg #{number} #{name}
 	table
+		tr
+			th Komitet
+			th Poparcie
+			th Mandaty
 		each datum in data
 			tr
-				td #{datum.committee}
+				td #{datum.committee.name}
+				td #{datum.support.toLocaleString('pl', {minimumFractionDigits: 1, maximumFractionDigits: 1})}%
 				td #{datum.mandates}
+	p Łącznie #{size} mandatów
 

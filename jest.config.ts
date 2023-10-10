@@ -17,5 +17,6 @@ module.exports = {
 		'^.+\\.[jt]s$': 'ts-jest',
 		'\\.(pug)$': 'jest-transform-pug',
 		'.+\\.(css)$': 'jest-transform-stub',
+		'^.+\\.svg$': 'jest-transform-stub',
 	},
 };
