@@ -164,6 +164,10 @@ h2 {
 	height: 2rem;
 }
 
+#support-form table td:nth-child(2) {
+	white-space: nowrap;
+}
+
 #support-form table td:last-child {
 	text-align: right;
 }
