@@ -4,7 +4,7 @@ table
 		th Poparcie
 		th Mandaty
 	each committee in committees
-		tr(class=committee.id)
+		tr(class=committee.id style=(committee.id == 'mn' ? 'display: none' : ''))
 			td
 				label(for=committee.id) #{committee.name}
 			td

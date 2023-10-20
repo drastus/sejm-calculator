@@ -47,6 +47,9 @@ const displayResults = (mandates: number[]) => {
 		const committeeId = committees[index].id;
 		const td = document.querySelector<HTMLTableCellElement>(`tr.${committeeId} td:last-child`);
 		if (td) td.textContent = value.toString();
+		if (index === 5 && value > 0 && td?.parentElement) {
+			td.parentElement.style.display = 'table-row';
+		}
 	});
 };
 

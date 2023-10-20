@@ -1,4 +1,4 @@
-type PastCommiteeId = 'pis' | 'ko' | 'lewica' | 'psl' | 'konfederacja'
+type PastCommiteeId = 'pis' | 'ko' | 'td' | 'lewica' | 'konfederacja'
 
 export type PastSupport = {
 	[pastCommitteeId in PastCommiteeId]: number;
