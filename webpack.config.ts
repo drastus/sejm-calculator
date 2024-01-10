@@ -1,9 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import path from 'path';
-import ESLintPlugin from 'eslint-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import StyleLintPlugin from 'stylelint-webpack-plugin';
 
 export default {
 	target: 'web',
@@ -62,14 +59,6 @@ export default {
 		new MiniCssExtractPlugin({
 			filename: '[name].css',
 			chunkFilename: '[id].css',
-		}),
-		new ESLintPlugin({
-			files: ['./*.[jt]s', './src/**/*.[jt]s'],
-		}),
-		new StyleLintPlugin({
-			configFile: path.resolve(__dirname, '.stylelintrc.json'),
-			context: path.resolve(__dirname, './src'),
-			files: '**/*.css',
 		}),
 	],
 	devServer: {

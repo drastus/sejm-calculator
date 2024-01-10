@@ -1,49 +1,36 @@
 {
 	"env": {
-		"browser": true,
-		"node": true,
 		"es6": true
 	},
 	"parser": "@typescript-eslint/parser",
-	"parserOptions": {
-		"ecmaVersion": 2018,
-		"sourceType": "module"
-	},
-	"settings": {
-		"import/resolver": {
-			"node": {
-				"extensions": [".js", ".ts"]
-			}
-		}
-	},
+	"parserOptions":  {"project": ["./tsconfig.json"]},
 	"plugins": ["@typescript-eslint"],
-	"extends": "airbnb-base",
+	"extends": [
+		"xo/browser",
+		"xo-typescript"
+	],
 	"rules": {
-		"indent": ["error", "tab"],
-		"no-tabs": "off",
-		"object-curly-spacing": ["error", "never"],
-		"no-param-reassign": ["error", {"props": false}],
-		"import/extensions": ["error", "ignorePackages", {
-			"js": "never",
-			"ts": "never"
-		}]
-	},
-	"overrides": [
-		{
-			"files": ["*.ts"],
-			"parser": "@typescript-eslint/parser",
-			"extends": [
-				"eslint:recommended",
-				"plugin:@typescript-eslint/recommended"
-			],
-			"rules": {
-				"indent": "off",
-				"max-len": [2, 120],
-				"import/prefer-default-export": "off",
-				"@typescript-eslint/indent": ["error", "tab"],
-				"@typescript-eslint/explicit-function-return-type": "off",
-				"@typescript-eslint/no-non-null-assertion": "off"
+		"arrow-parens": ["error", "always"],
+		"curly": ["error", "multi-line"],
+		"padding-line-between-statements": "off",
+		"object-shorthand": ["error", "properties"],
+		"@typescript-eslint/ban-types": ["error", {"extendDefaults": true}],
+		"@typescript-eslint/member-delimiter-style": ["error", {
+			"multiline": {
+				"delimiter": "comma",
+				"requireLast": true
+			},
+			"singleline": {
+				"delimiter": "comma",
+				"requireLast": false
 			}
+		}],
+		"@typescript-eslint/padding-line-between-statements": "off"
+	},
+	"overrides": [{
+		"files": ["test/*.ts"],
+		"rules": {
+		  "@typescript-eslint/no-confusing-void-expression": "off"
 		}
-	]
+	}]
 }

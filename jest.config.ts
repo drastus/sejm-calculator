@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 const reporters = ['default'];
 
 module.exports = {

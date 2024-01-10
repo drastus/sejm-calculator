@@ -1,5 +1,5 @@
 import {committees, constituencies, pastSupport} from './data';
-import {Constituency} from './types';
+import type {Constituency} from './types';
 
 const calculateLocalSupport = (
 	support: number[],
@@ -31,7 +31,7 @@ export default (support: number[]): number[] => {
 			.map((pastCommittee) => pastSupport[pastCommittee[0]] * pastCommittee[1])
 			.reduce((a, b) => a + b, 0)
 	));
-	const mandates: number[] = new Array(support.length + 1).fill(0);
+	const mandates = new Array(support.length + 1).fill(0) as number[];
 	constituencies.forEach((constituency) => {
 		const localSupport = calculateLocalSupport(support, pastSupportProjection, constituency);
 		constituency.support = localSupport;
@@ -40,7 +40,7 @@ export default (support: number[]): number[] => {
 			if (support[index] < committees[index].threshold) return 0;
 			return localCommitteeSupport;
 		});
-		const quotients: {quotient: number; committeeIndex: number}[] = [];
+		const quotients: Array<{quotient: number, committeeIndex: number}> = [];
 		for (let divisor = 1; divisor <= constituency.size; divisor += 1) {
 			for (let committeeIndex = 0; committeeIndex < localSupport.length; committeeIndex += 1) {
 				quotients.push({

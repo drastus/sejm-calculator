@@ -1,21 +1,21 @@
-type PastCommiteeId = 'pis' | 'ko' | 'td' | 'lewica' | 'konfederacja'
+type PastCommiteeId = 'pis' | 'ko' | 'td' | 'lewica' | 'konfederacja';
 
 export type PastSupport = {
 	[pastCommitteeId in PastCommiteeId]: number;
-}
+};
 
 export type Committee = {
-	id: string;
-	name: string;
-	shortName: string;
-	threshold: number;
-	pastSupportEquivalence: [PastCommiteeId, number][];
-}
+	id: string,
+	name: string,
+	shortName: string,
+	threshold: number,
+	pastSupportEquivalence: Array<[PastCommiteeId, number]>,
+};
 
 export type Constituency = {
-	name: string;
-	size: number;
-	pastSupport: PastSupport;
-	support?: number[];
-	mandates?: number[];
-}
+	name: string,
+	size: number,
+	pastSupport: PastSupport,
+	support?: number[],
+	mandates?: number[],
+};

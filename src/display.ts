@@ -61,7 +61,7 @@ const displayUrl = (support: number[]) => {
 			if (s > 0) searchParams.append(committees[i].id, s.toString());
 		});
 		const urlWithoutSearchString = location.href.split('?')[0];
-		const url = `${urlWithoutSearchString}?${searchParams}`;
+		const url = `${urlWithoutSearchString}?${searchParams.toString()}`;
 		document.getElementById('url')!.innerHTML = `Link do wyników: ${url.link(url)}`;
 	}
 };
@@ -147,7 +147,7 @@ const displayConstituencyResults = () => {
 				const data = (constituency.mandates && constituency.support)
 					? constituency.mandates.map((mandates, committeeIndex) => ({
 						committee: committees[committeeIndex],
-						support: (constituency.support as number[])[committeeIndex],
+						support: (constituency.support!)[committeeIndex],
 						mandates,
 					}))
 					: [];
@@ -164,7 +164,7 @@ const displayConstituencyResults = () => {
 					const pathElement = event.target as SVGPathElement;
 					pathElement.style.stroke = '#444';
 					constituencyNumber.innerHTML = `Okręg nr ${pathElement.dataset.cid}`;
-					constituencyName.innerHTML = pathElement.dataset.cname as string;
+					constituencyName.innerHTML = pathElement.dataset.cname!;
 				});
 				path.addEventListener('mouseout', (event) => {
 					const pathElement = event.target as SVGPathElement;
@@ -187,7 +187,9 @@ const displayConstituencyResults = () => {
 };
 
 const validate = (form: HTMLFormElement, inputs: NodeListOf<HTMLInputElement>, support: number[]) => {
-	inputs.forEach((input) => input.setCustomValidity(''));
+	inputs.forEach((input) => {
+		input.setCustomValidity('');
+	});
 
 	support.some((inputValue, index) => {
 		if (inputValue < 0) {
@@ -225,9 +227,11 @@ export const calculate = (): void => {
 	pieChart = displayPieChart(mandates);
 	displayConstituencyResults();
 
-	inputs.forEach((input) => input.addEventListener('input', () => {
-		clearResults();
-	}));
+	inputs.forEach((input) => {
+		input.addEventListener('input', () => {
+			clearResults();
+		});
+	});
 };
 
 export const generateTable = (): void => {

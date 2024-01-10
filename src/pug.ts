@@ -1,5 +1,5 @@
 declare module '*.pug' {
-	import pug = require('pug');
+	import type pug from 'pug';
 
 	const content: pug.compileTemplate;
 	export = content;
