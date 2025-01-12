@@ -8,15 +8,15 @@ test('calculates correct results (1)', () => {
 });
 
 test('calculates correct results (2)', () => {
-	const support = [30, 25, 20, 10, 6];
+	const support = [43.59, 27,4, 6.28, 6.28, 15.36];
 	const mandates = calculateMandates(support);
 
-	expect(mandates).toEqual([176, 130, 103, 39, 12, 0]);
+	expect(mandates).toEqual([235, 134, 18, 18, 55, 0]);
 });
 
 test('calculates correct results (3)', () => {
-	const support = [39.7, 42.4, 0, 0, 7.2];
+	const support = [36.16, 37.06, 6.91, 6.3, 12.08];
 	const mandates = calculateMandates(support);
 
-	expect(mandates).toEqual([223, 219, 0, 0, 18, 0]);
+	expect(mandates).toEqual([171, 176, 30, 20, 63, 0]);
 });
