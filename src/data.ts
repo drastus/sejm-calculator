@@ -28,10 +28,17 @@ export const committees: Committee[] = [
 		pastSupportEquivalence: [['ko', 1]],
 	},
 	{
-		id: 'td',
-		name: 'Trzecia Droga',
-		shortName: 'TD',
-		threshold: 8,
+		id: 'pl2050',
+		name: 'Polska 2050',
+		shortName: 'PL2050',
+		threshold: 5,
+		pastSupportEquivalence: [['td', 1]],
+	},
+	{
+		id: 'psl',
+		name: 'Polskie Stronnictwo Ludowe',
+		shortName: 'PSL',
+		threshold: 5,
 		pastSupportEquivalence: [['td', 1]],
 	},
 	{
@@ -42,11 +49,25 @@ export const committees: Committee[] = [
 		pastSupportEquivalence: [['lewica', 1]],
 	},
 	{
+		id: 'razem',
+		name: 'Partia Razem',
+		shortName: 'Razem',
+		threshold: 5,
+		pastSupportEquivalence: [['ko', 0.32], ['pis', 0.05], ['konfederacja', 0.03], ['td', 0.19], ['lewica', 0.41]],
+	},
+	{
 		id: 'konfederacja',
 		name: 'Konfederacja',
 		shortName: 'Konf.',
 		threshold: 5,
 		pastSupportEquivalence: [['konfederacja', 1]],
+	},
+	{
+		id: 'korona',
+		name: 'Konfederacja Korony Polskiej',
+		shortName: 'Korona',
+		threshold: 5,
+		pastSupportEquivalence: [['ko', 0.07], ['pis', 0.31], ['konfederacja', 0.55], ['td', 0.05], ['lewica', 0.02]],
 	},
 	{
 		id: 'mn',
@@ -58,12 +79,15 @@ export const committees: Committee[] = [
 ];
 
 export const benchSort = [
+	'razem',
 	'lewica',
 	'ko',
 	'mn',
-	'td',
+	'pl2050',
+	'psl',
 	'pis',
 	'konfederacja',
+	'korona',
 ];
 
 export const constituencies: Constituency[] = [

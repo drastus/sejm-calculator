@@ -176,8 +176,11 @@ h2 {
 	--pis: #31469b;
 	--ko: #fca43f;
 	--lewica: #d44;
-	--td: #8bd32e;
-	--konfederacja: #655;
+	--razem: #870f57;
+	--pl2050: #fbc314;
+	--psl: #1bb100;
+	--konfederacja: #4169e1;
+	--korona: #903;
 	--mn: #aaa;
 }
 
@@ -196,14 +199,29 @@ h2 {
 	fill: var(--lewica);
 }
 
-.td {
-	stroke: var(--td);
-	fill: var(--td);
+.razem {
+	stroke: var(--razem);
+	fill: var(--razem);
+}
+
+.pl2050 {
+	stroke: var(--pl2050);
+	fill: var(--pl2050);
+}
+
+.psl {
+	stroke: var(--psl);
+	fill: var(--psl);
 }
 
 .konfederacja {
 	stroke: var(--konfederacja);
 	fill: var(--konfederacja);
+}
+
+.korona {
+	stroke: var(--korona);
+	fill: var(--korona);
 }
 
 .mn {
