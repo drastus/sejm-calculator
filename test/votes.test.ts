@@ -46,13 +46,13 @@ const checkVoteDistribution = (support: number[]) => {
 };
 
 test('simulated vote distribution matches national support (last election)', () => {
-	checkVoteDistribution([35.38, 30.7, 14.4, 0, 8.61, 0, 7.16, 0]);
+	checkVoteDistribution([35.38, 0, 30.7, 14.4, 0, 8.61, 0, 7.16, 0]);
 });
 
 test('simulated vote distribution matches national support (simulation 1)', () => {
-	checkVoteDistribution([25, 30, 5.5, 5.2, 6, 5.8, 10, 6]);
+	checkVoteDistribution([25, 0, 30, 5.5, 5.2, 6, 5.8, 10, 6]);
 });
 
 test('simulated vote distribution matches national support (simulation 2)', () => {
-	checkVoteDistribution([39.7, 42.4, 0, 0, 0, 7.2, 0]);
+	checkVoteDistribution([39.7, 0, 42.4, 0, 0, 0, 7.2, 0]);
 });

@@ -21,6 +21,13 @@ export const committees: Committee[] = [
 		pastSupportEquivalence: [['pis', 1]],
 	},
 	{
+		id: 'rplus',
+		name: 'Rozwój Plus',
+		shortName: 'R+',
+		threshold: 5,
+		pastSupportEquivalence: [['pis', 1]],
+	},
+	{
 		id: 'ko',
 		name: 'Koalicja Obywatelska',
 		shortName: 'KO',
@@ -85,6 +92,7 @@ export const benchSort = [
 	'mn',
 	'pl2050',
 	'psl',
+	'rplus',
 	'pis',
 	'konfederacja',
 	'korona',
