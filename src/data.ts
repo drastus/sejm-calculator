@@ -94,6 +94,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Legnica',
 		size: 12,
+		votes: 501870,
 		pastSupport: {
 			pis: 34.80,
 			ko: 33.78,
@@ -105,6 +106,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Wałbrzych',
 		size: 8,
+		votes: 323360,
 		pastSupport: {
 			ko: 37.17,
 			pis: 33.34,
@@ -116,6 +118,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Wrocław',
 		size: 14,
+		votes: 776054,
 		pastSupport: {
 			ko: 36.94,
 			pis: 26.66,
@@ -127,6 +130,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Bydgoszcz',
 		size: 12,
+		votes: 533919,
 		pastSupport: {
 			ko: 35.01,
 			pis: 30.45,
@@ -138,6 +142,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Toruń',
 		size: 13,
+		votes: 537597,
 		pastSupport: {
 			pis: 34.06,
 			ko: 29.52,
@@ -149,6 +154,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Lublin',
 		size: 15,
+		votes: 648347,
 		pastSupport: {
 			pis: 45.48,
 			ko: 20.32,
@@ -160,6 +166,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Chełm',
 		size: 12,
+		votes: 456872,
 		pastSupport: {
 			pis: 50.75,
 			ko: 17.40,
@@ -171,6 +178,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Zielona Góra',
 		size: 12,
+		votes: 517041,
 		pastSupport: {
 			ko: 37.73,
 			pis: 27.76,
@@ -182,6 +190,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Łódź',
 		size: 10,
+		votes: 456552,
 		pastSupport: {
 			ko: 41.07,
 			pis: 26.82,
@@ -193,6 +202,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Piotrków Trybunalski',
 		size: 9,
+		votes: 396819,
 		pastSupport: {
 			pis: 46.60,
 			ko: 21.69,
@@ -204,6 +214,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Sieradz',
 		size: 12,
+		votes: 533128,
 		pastSupport: {
 			pis: 41.46,
 			ko: 25.89,
@@ -215,6 +226,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Chrzanów',
 		size: 8,
+		votes: 364671,
 		pastSupport: {
 			pis: 42.86,
 			ko: 24.24,
@@ -226,6 +238,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Kraków',
 		size: 14,
+		votes: 757522,
 		pastSupport: {
 			ko: 30.73,
 			pis: 30.68,
@@ -237,6 +250,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Nowy Sącz',
 		size: 10,
+		votes: 427292,
 		pastSupport: {
 			pis: 53.73,
 			ko: 16.10,
@@ -248,6 +262,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Tarnów',
 		size: 9,
+		votes: 403591,
 		pastSupport: {
 			pis: 48.67,
 			td: 18.64,
@@ -259,6 +274,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Płock',
 		size: 10,
+		votes: 442567,
 		pastSupport: {
 			pis: 44.11,
 			ko: 22.40,
@@ -270,6 +286,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Radom',
 		size: 9,
+		votes: 391202,
 		pastSupport: {
 			pis: 48.68,
 			ko: 20.96,
@@ -281,6 +298,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Siedlce',
 		size: 12,
+		votes: 539408,
 		pastSupport: {
 			pis: 48.62,
 			ko: 18.71,
@@ -292,6 +310,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Warszawa I',
 		size: 20,
+		votes: 1714719,
 		pastSupport: {
 			ko: 43.23,
 			pis: 20.14,
@@ -303,6 +322,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Warszawa II',
 		size: 12,
+		votes: 730744,
 		pastSupport: {
 			ko: 35.23,
 			pis: 31.74,
@@ -314,6 +334,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Opole',
 		size: 12,
+		votes: 479968,
 		pastSupport: {
 			ko: 33.59,
 			pis: 31.26,
@@ -325,6 +346,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Krosno',
 		size: 11,
+		votes: 441996,
 		pastSupport: {
 			pis: 54.70,
 			ko: 15.85,
@@ -336,6 +358,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Rzeszów',
 		size: 15,
+		votes: 673776,
 		pastSupport: {
 			pis: 51.60,
 			ko: 17.70,
@@ -347,6 +370,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Białystok',
 		size: 14,
+		votes: 609244,
 		pastSupport: {
 			pis: 42.39,
 			ko: 20.84,
@@ -358,6 +382,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Gdańsk',
 		size: 12,
+		votes: 616287,
 		pastSupport: {
 			ko: 41.70,
 			pis: 25.20,
@@ -369,6 +394,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Gdynia',
 		size: 14,
+		votes: 682899,
 		pastSupport: {
 			ko: 37.91,
 			pis: 29.24,
@@ -380,6 +406,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Bielsko-Biała',
 		size: 9,
+		votes: 445346,
 		pastSupport: {
 			pis: 36.71,
 			ko: 28.67,
@@ -391,6 +418,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Częstochowa',
 		size: 7,
+		votes: 323941,
 		pastSupport: {
 			pis: 36.35,
 			ko: 29.11,
@@ -402,6 +430,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Gliwice',
 		size: 9,
+		votes: 387408,
 		pastSupport: {
 			ko: 36.06,
 			pis: 30.16,
@@ -413,6 +442,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Rybnik',
 		size: 9,
+		votes: 381598,
 		pastSupport: {
 			pis: 38.06,
 			ko: 29.98,
@@ -424,6 +454,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Katowice',
 		size: 12,
+		votes: 526167,
 		pastSupport: {
 			ko: 36.79,
 			pis: 30.88,
@@ -435,6 +466,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Sosnowiec',
 		size: 9,
+		votes: 377959,
 		pastSupport: {
 			ko: 30.30,
 			pis: 29.74,
@@ -446,6 +478,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Kielce',
 		size: 16,
+		votes: 659132,
 		pastSupport: {
 			pis: 47.07,
 			ko: 20.93,
@@ -457,6 +490,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Elbląg',
 		size: 8,
+		votes: 299380,
 		pastSupport: {
 			pis: 35.20,
 			ko: 31.87,
@@ -468,6 +502,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Olsztyn',
 		size: 10,
+		votes: 391058,
 		pastSupport: {
 			ko: 33.07,
 			pis: 32.33,
@@ -479,6 +514,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Kalisz',
 		size: 12,
+		votes: 542267,
 		pastSupport: {
 			pis: 35.85,
 			ko: 28.58,
@@ -490,6 +526,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Konin',
 		size: 9,
+		votes: 419243,
 		pastSupport: {
 			pis: 38.69,
 			ko: 23.99,
@@ -501,6 +538,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Piła',
 		size: 9,
+		votes: 413235,
 		pastSupport: {
 			ko: 34.87,
 			pis: 29.11,
@@ -512,6 +550,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Poznań',
 		size: 10,
+		votes: 596038,
 		pastSupport: {
 			ko: 44.09,
 			pis: 19.57,
@@ -523,6 +562,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Koszalin',
 		size: 8,
+		votes: 322149,
 		pastSupport: {
 			ko: 38.69,
 			pis: 31.36,
@@ -534,6 +574,7 @@ export const constituencies: Constituency[] = [
 	{
 		name: 'Szczecin',
 		size: 12,
+		votes: 554308,
 		pastSupport: {
 			ko: 40.13,
 			pis: 28.79,

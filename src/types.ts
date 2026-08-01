@@ -15,6 +15,7 @@ export type Committee = {
 export type Constituency = {
 	name: string,
 	size: number,
+	votes: number,
 	pastSupport: PastSupport,
 	support?: number[],
 	mandates?: number[],
