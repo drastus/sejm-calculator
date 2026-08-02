@@ -17,6 +17,13 @@ exports.committees = [
         pastSupportEquivalence: [['pis', 1]],
     },
     {
+        id: 'rplus',
+        name: 'Rozwój Plus',
+        shortName: 'R+',
+        threshold: 5,
+        pastSupportEquivalence: [['pis', 1]],
+    },
+    {
         id: 'ko',
         name: 'Koalicja Obywatelska',
         shortName: 'KO',
@@ -80,6 +87,7 @@ exports.benchSort = [
     'mn',
     'pl2050',
     'psl',
+    'rplus',
     'pis',
     'konfederacja',
     'korona',
@@ -88,6 +96,7 @@ exports.constituencies = [
     {
         name: 'Legnica',
         size: 12,
+        votes: 501870,
         pastSupport: {
             pis: 34.80,
             ko: 33.78,
@@ -99,6 +108,7 @@ exports.constituencies = [
     {
         name: 'Wałbrzych',
         size: 8,
+        votes: 323360,
         pastSupport: {
             ko: 37.17,
             pis: 33.34,
@@ -110,6 +120,7 @@ exports.constituencies = [
     {
         name: 'Wrocław',
         size: 14,
+        votes: 776054,
         pastSupport: {
             ko: 36.94,
             pis: 26.66,
@@ -121,6 +132,7 @@ exports.constituencies = [
     {
         name: 'Bydgoszcz',
         size: 12,
+        votes: 533919,
         pastSupport: {
             ko: 35.01,
             pis: 30.45,
@@ -132,6 +144,7 @@ exports.constituencies = [
     {
         name: 'Toruń',
         size: 13,
+        votes: 537597,
         pastSupport: {
             pis: 34.06,
             ko: 29.52,
@@ -143,6 +156,7 @@ exports.constituencies = [
     {
         name: 'Lublin',
         size: 15,
+        votes: 648347,
         pastSupport: {
             pis: 45.48,
             ko: 20.32,
@@ -154,6 +168,7 @@ exports.constituencies = [
     {
         name: 'Chełm',
         size: 12,
+        votes: 456872,
         pastSupport: {
             pis: 50.75,
             ko: 17.40,
@@ -165,6 +180,7 @@ exports.constituencies = [
     {
         name: 'Zielona Góra',
         size: 12,
+        votes: 517041,
         pastSupport: {
             ko: 37.73,
             pis: 27.76,
@@ -176,6 +192,7 @@ exports.constituencies = [
     {
         name: 'Łódź',
         size: 10,
+        votes: 456552,
         pastSupport: {
             ko: 41.07,
             pis: 26.82,
@@ -187,6 +204,7 @@ exports.constituencies = [
     {
         name: 'Piotrków Trybunalski',
         size: 9,
+        votes: 396819,
         pastSupport: {
             pis: 46.60,
             ko: 21.69,
@@ -198,6 +216,7 @@ exports.constituencies = [
     {
         name: 'Sieradz',
         size: 12,
+        votes: 533128,
         pastSupport: {
             pis: 41.46,
             ko: 25.89,
@@ -209,6 +228,7 @@ exports.constituencies = [
     {
         name: 'Chrzanów',
         size: 8,
+        votes: 364671,
         pastSupport: {
             pis: 42.86,
             ko: 24.24,
@@ -220,6 +240,7 @@ exports.constituencies = [
     {
         name: 'Kraków',
         size: 14,
+        votes: 757522,
         pastSupport: {
             ko: 30.73,
             pis: 30.68,
@@ -231,6 +252,7 @@ exports.constituencies = [
     {
         name: 'Nowy Sącz',
         size: 10,
+        votes: 427292,
         pastSupport: {
             pis: 53.73,
             ko: 16.10,
@@ -242,6 +264,7 @@ exports.constituencies = [
     {
         name: 'Tarnów',
         size: 9,
+        votes: 403591,
         pastSupport: {
             pis: 48.67,
             td: 18.64,
@@ -253,6 +276,7 @@ exports.constituencies = [
     {
         name: 'Płock',
         size: 10,
+        votes: 442567,
         pastSupport: {
             pis: 44.11,
             ko: 22.40,
@@ -264,6 +288,7 @@ exports.constituencies = [
     {
         name: 'Radom',
         size: 9,
+        votes: 391202,
         pastSupport: {
             pis: 48.68,
             ko: 20.96,
@@ -275,6 +300,7 @@ exports.constituencies = [
     {
         name: 'Siedlce',
         size: 12,
+        votes: 539408,
         pastSupport: {
             pis: 48.62,
             ko: 18.71,
@@ -286,6 +312,7 @@ exports.constituencies = [
     {
         name: 'Warszawa I',
         size: 20,
+        votes: 1714719,
         pastSupport: {
             ko: 43.23,
             pis: 20.14,
@@ -297,6 +324,7 @@ exports.constituencies = [
     {
         name: 'Warszawa II',
         size: 12,
+        votes: 730744,
         pastSupport: {
             ko: 35.23,
             pis: 31.74,
@@ -308,6 +336,7 @@ exports.constituencies = [
     {
         name: 'Opole',
         size: 12,
+        votes: 479968,
         pastSupport: {
             ko: 33.59,
             pis: 31.26,
@@ -319,6 +348,7 @@ exports.constituencies = [
     {
         name: 'Krosno',
         size: 11,
+        votes: 441996,
         pastSupport: {
             pis: 54.70,
             ko: 15.85,
@@ -330,6 +360,7 @@ exports.constituencies = [
     {
         name: 'Rzeszów',
         size: 15,
+        votes: 673776,
         pastSupport: {
             pis: 51.60,
             ko: 17.70,
@@ -341,6 +372,7 @@ exports.constituencies = [
     {
         name: 'Białystok',
         size: 14,
+        votes: 609244,
         pastSupport: {
             pis: 42.39,
             ko: 20.84,
@@ -352,6 +384,7 @@ exports.constituencies = [
     {
         name: 'Gdańsk',
         size: 12,
+        votes: 616287,
         pastSupport: {
             ko: 41.70,
             pis: 25.20,
@@ -363,6 +396,7 @@ exports.constituencies = [
     {
         name: 'Gdynia',
         size: 14,
+        votes: 682899,
         pastSupport: {
             ko: 37.91,
             pis: 29.24,
@@ -374,6 +408,7 @@ exports.constituencies = [
     {
         name: 'Bielsko-Biała',
         size: 9,
+        votes: 445346,
         pastSupport: {
             pis: 36.71,
             ko: 28.67,
@@ -385,6 +420,7 @@ exports.constituencies = [
     {
         name: 'Częstochowa',
         size: 7,
+        votes: 323941,
         pastSupport: {
             pis: 36.35,
             ko: 29.11,
@@ -396,6 +432,7 @@ exports.constituencies = [
     {
         name: 'Gliwice',
         size: 9,
+        votes: 387408,
         pastSupport: {
             ko: 36.06,
             pis: 30.16,
@@ -407,6 +444,7 @@ exports.constituencies = [
     {
         name: 'Rybnik',
         size: 9,
+        votes: 381598,
         pastSupport: {
             pis: 38.06,
             ko: 29.98,
@@ -418,6 +456,7 @@ exports.constituencies = [
     {
         name: 'Katowice',
         size: 12,
+        votes: 526167,
         pastSupport: {
             ko: 36.79,
             pis: 30.88,
@@ -429,6 +468,7 @@ exports.constituencies = [
     {
         name: 'Sosnowiec',
         size: 9,
+        votes: 377959,
         pastSupport: {
             ko: 30.30,
             pis: 29.74,
@@ -440,6 +480,7 @@ exports.constituencies = [
     {
         name: 'Kielce',
         size: 16,
+        votes: 659132,
         pastSupport: {
             pis: 47.07,
             ko: 20.93,
@@ -451,6 +492,7 @@ exports.constituencies = [
     {
         name: 'Elbląg',
         size: 8,
+        votes: 299380,
         pastSupport: {
             pis: 35.20,
             ko: 31.87,
@@ -462,6 +504,7 @@ exports.constituencies = [
     {
         name: 'Olsztyn',
         size: 10,
+        votes: 391058,
         pastSupport: {
             ko: 33.07,
             pis: 32.33,
@@ -473,6 +516,7 @@ exports.constituencies = [
     {
         name: 'Kalisz',
         size: 12,
+        votes: 542267,
         pastSupport: {
             pis: 35.85,
             ko: 28.58,
@@ -484,6 +528,7 @@ exports.constituencies = [
     {
         name: 'Konin',
         size: 9,
+        votes: 419243,
         pastSupport: {
             pis: 38.69,
             ko: 23.99,
@@ -495,6 +540,7 @@ exports.constituencies = [
     {
         name: 'Piła',
         size: 9,
+        votes: 413235,
         pastSupport: {
             ko: 34.87,
             pis: 29.11,
@@ -506,6 +552,7 @@ exports.constituencies = [
     {
         name: 'Poznań',
         size: 10,
+        votes: 596038,
         pastSupport: {
             ko: 44.09,
             pis: 19.57,
@@ -517,6 +564,7 @@ exports.constituencies = [
     {
         name: 'Koszalin',
         size: 8,
+        votes: 322149,
         pastSupport: {
             ko: 38.69,
             pis: 31.36,
@@ -528,6 +576,7 @@ exports.constituencies = [
     {
         name: 'Szczecin',
         size: 12,
+        votes: 554308,
         pastSupport: {
             ko: 40.13,
             pis: 28.79,
