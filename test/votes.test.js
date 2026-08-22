@@ -36,12 +36,12 @@ var checkVoteDistribution = function (support) {
     }
 };
 test('simulated vote distribution matches national support (last election)', function () {
-    checkVoteDistribution([35.38, 0, 30.7, 14.4, 0, 8.61, 0, 7.16, 0]);
+    checkVoteDistribution([30.7, 7.16, 0, 8.61, 0, 14.4, 0, 35.38, 0]);
 });
 test('simulated vote distribution matches national support (simulation 1)', function () {
-    checkVoteDistribution([25, 0, 30, 5.5, 5.2, 6, 5.8, 10, 6]);
+    checkVoteDistribution([30, 10, 6, 6, 5.8, 5.5, 5.2, 25, 0]);
 });
 test('simulated vote distribution matches national support (simulation 2)', function () {
-    checkVoteDistribution([39.7, 0, 42.4, 0, 0, 0, 7.2, 0]);
+    checkVoteDistribution([42.4, 0, 0, 0, 7.2, 0, 0, 39.7, 0]);
 });
 //# sourceMappingURL=votes.test.js.map

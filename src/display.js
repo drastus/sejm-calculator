@@ -231,10 +231,27 @@ var generateTable = function () {
     }));
 };
 exports.generateTable = generateTable;
+var legacyIdMap = {
+    lewica: 'nl',
+    konfederacja: 'konf',
+};
 var loadResultsFromUrl = function () {
     if (location.search) {
         var searchParams = new URLSearchParams(location.search);
+        var normalizedParams_1 = new URLSearchParams();
+        var hasLegacyKeys_1 = false;
         searchParams.forEach(function (value, key) {
+            var _a;
+            var normalizedKey = (_a = legacyIdMap[key]) !== null && _a !== void 0 ? _a : key;
+            if (normalizedKey !== key)
+                hasLegacyKeys_1 = true;
+            normalizedParams_1.append(normalizedKey, value);
+        });
+        if (hasLegacyKeys_1) {
+            var urlWithoutSearch = location.href.split('?')[0];
+            window.history.replaceState('', '', "".concat(urlWithoutSearch, "?").concat(normalizedParams_1.toString()));
+        }
+        normalizedParams_1.forEach(function (value, key) {
             var input = document.querySelector("tr.".concat(key, " td:nth-child(2) input"));
             if (input)
                 input.value = value;
