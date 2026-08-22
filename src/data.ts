@@ -3,14 +3,56 @@ import type {
 	Committee,
 	Constituency,
 } from './types';
+import csvRaw from './wyniki2023.csv';
+
+type CsvRow = {
+	votes: number,
+	td: number,
+	nl: number,
+	pis: number,
+	konf: number,
+	ko: number,
+};
+
+function parseWyniki2023(): CsvRow[] {
+	const lines = csvRaw.replace(/^\uFEFF/, '').trim().split('\n');
+	const headers = lines[0].split(';').map((h) => h.replace(/^"|"$/g, ''));
+	return lines.slice(1).map((line) => {
+		const cols = line.split(';');
+		const get = (name: string) => parseInt(cols[headers.indexOf(name)], 10);
+		return {
+			votes: get('votes'),
+			td: get('td'),
+			nl: get('nl'),
+			pis: get('pis'),
+			konf: get('konf'),
+			ko: get('ko'),
+		};
+	});
+}
+
+const wyniki2023 = parseWyniki2023();
+
+const totalVotes = wyniki2023.reduce((sum, row) => sum + row.votes, 0);
+
+const sumCol = (key: keyof Omit<CsvRow, 'votes'>) =>
+	wyniki2023.reduce((sum, row) => sum + row[key], 0);
 
 export const pastSupport: PastSupport = {
-	pis: 35.38,
-	ko: 30.7,
-	td: 14.4,
-	lewica: 8.61,
-	konfederacja: 7.16,
+	pis: sumCol('pis') / totalVotes * 100,
+	ko: sumCol('ko') / totalVotes * 100,
+	td: sumCol('td') / totalVotes * 100,
+	nl: sumCol('nl') / totalVotes * 100,
+	konf: sumCol('konf') / totalVotes * 100,
 };
+
+const rowPastSupport = (row: CsvRow): PastSupport => ({
+	pis: row.pis / row.votes * 100,
+	ko: row.ko / row.votes * 100,
+	td: row.td / row.votes * 100,
+	nl: row.nl / row.votes * 100,
+	konf: row.konf / row.votes * 100,
+});
 
 export const committees: Committee[] = [
 	{
@@ -21,32 +63,32 @@ export const committees: Committee[] = [
 		pastSupportEquivalence: [['ko', 1]],
 	},
 	{
-		id: 'konfederacja',
+		id: 'konf',
 		name: 'Konfederacja',
 		shortName: 'Konf.',
 		threshold: 5,
-		pastSupportEquivalence: [['konfederacja', 1]],
+		pastSupportEquivalence: [['konf', 1]],
 	},
 	{
 		id: 'korona',
 		name: 'Konfederacja Korony Polskiej',
 		shortName: 'Korona',
 		threshold: 5,
-		pastSupportEquivalence: [['ko', 0.07], ['pis', 0.31], ['konfederacja', 0.55], ['td', 0.05], ['lewica', 0.02]],
+		pastSupportEquivalence: [['ko', 0.07], ['pis', 0.31], ['konf', 0.55], ['td', 0.05], ['nl', 0.02]],
 	},
 	{
-		id: 'lewica',
-		name: 'Lewica',
-		shortName: 'Lew.',
+		id: 'nl',
+		name: 'Nowa Lewica',
+		shortName: 'NL',
 		threshold: 5,
-		pastSupportEquivalence: [['lewica', 1]],
+		pastSupportEquivalence: [['nl', 1]],
 	},
 	{
 		id: 'razem',
 		name: 'Partia Razem',
 		shortName: 'Razem',
 		threshold: 5,
-		pastSupportEquivalence: [['ko', 0.32], ['pis', 0.05], ['konfederacja', 0.03], ['td', 0.19], ['lewica', 0.41]],
+		pastSupportEquivalence: [['ko', 0.32], ['pis', 0.05], ['konf', 0.03], ['td', 0.19], ['nl', 0.41]],
 	},
 	{
 		id: 'pl2050',
@@ -87,508 +129,64 @@ export const committees: Committee[] = [
 
 export const benchSort = [
 	'razem',
-	'lewica',
+	'nl',
 	'ko',
 	'mn',
 	'pl2050',
 	'psl',
 	'rplus',
 	'pis',
-	'konfederacja',
+	'konf',
 	'korona',
 ];
 
-export const constituencies: Constituency[] = [
-	{
-		name: 'Legnica',
-		size: 12,
-		votes: 501870,
-		pastSupport: {
-			pis: 34.80,
-			ko: 33.78,
-			td: 10.75,
-			lewica: 9.51,
-			konfederacja: 6.33,
-		},
-	},
-	{
-		name: 'Wałbrzych',
-		size: 8,
-		votes: 323360,
-		pastSupport: {
-			ko: 37.17,
-			pis: 33.34,
-			td: 12.13,
-			lewica: 7.98,
-			konfederacja: 6.02,
-		},
-	},
-	{
-		name: 'Wrocław',
-		size: 14,
-		votes: 776054,
-		pastSupport: {
-			ko: 36.94,
-			pis: 26.66,
-			td: 13.74,
-			lewica: 11.35,
-			konfederacja: 6.98,
-		},
-	},
-	{
-		name: 'Bydgoszcz',
-		size: 12,
-		votes: 533919,
-		pastSupport: {
-			ko: 35.01,
-			pis: 30.45,
-			td: 15.06,
-			lewica: 9.92,
-			konfederacja: 6.42,
-		},
-	},
-	{
-		name: 'Toruń',
-		size: 13,
-		votes: 537597,
-		pastSupport: {
-			pis: 34.06,
-			ko: 29.52,
-			td: 15.68,
-			lewica: 11.25,
-			konfederacja: 6.37,
-		},
-	},
-	{
-		name: 'Lublin',
-		size: 15,
-		votes: 648347,
-		pastSupport: {
-			pis: 45.48,
-			ko: 20.32,
-			td: 15.87,
-			konfederacja: 8.38,
-			lewica: 5.72,
-		},
-	},
-	{
-		name: 'Chełm',
-		size: 12,
-		votes: 456872,
-		pastSupport: {
-			pis: 50.75,
-			ko: 17.40,
-			td: 13.04,
-			konfederacja: 7.79,
-			lewica: 5.62,
-		},
-	},
-	{
-		name: 'Zielona Góra',
-		size: 12,
-		votes: 517041,
-		pastSupport: {
-			ko: 37.73,
-			pis: 27.76,
-			td: 15.07,
-			lewica: 9.27,
-			konfederacja: 6.51,
-		},
-	},
-	{
-		name: 'Łódź',
-		size: 10,
-		votes: 456552,
-		pastSupport: {
-			ko: 41.07,
-			pis: 26.82,
-			lewica: 12.22,
-			td: 11.89,
-			konfederacja: 5.57,
-		},
-	},
-	{
-		name: 'Piotrków Trybunalski',
-		size: 9,
-		votes: 396819,
-		pastSupport: {
-			pis: 46.60,
-			ko: 21.69,
-			td: 13.73,
-			konfederacja: 7.62,
-			lewica: 6.39,
-		},
-	},
-	{
-		name: 'Sieradz',
-		size: 12,
-		votes: 533128,
-		pastSupport: {
-			pis: 41.46,
-			ko: 25.89,
-			td: 14.50,
-			lewica: 7.73,
-			konfederacja: 6.82,
-		},
-	},
-	{
-		name: 'Chrzanów',
-		size: 8,
-		votes: 364671,
-		pastSupport: {
-			pis: 42.86,
-			ko: 24.24,
-			td: 14.97,
-			konfederacja: 7.88,
-			lewica: 6.04,
-		},
-	},
-	{
-		name: 'Kraków',
-		size: 14,
-		votes: 757522,
-		pastSupport: {
-			ko: 30.73,
-			pis: 30.68,
-			td: 16.86,
-			lewica: 11.04,
-			konfederacja: 7.71,
-		},
-	},
-	{
-		name: 'Nowy Sącz',
-		size: 10,
-		votes: 427292,
-		pastSupport: {
-			pis: 53.73,
-			ko: 16.10,
-			td: 11.58,
-			konfederacja: 8.73,
-			lewica: 3.18,
-		},
-	},
-	{
-		name: 'Tarnów',
-		size: 9,
-		votes: 403591,
-		pastSupport: {
-			pis: 48.67,
-			td: 18.64,
-			ko: 17.02,
-			konfederacja: 7.99,
-			lewica: 4.00,
-		},
-	},
-	{
-		name: 'Płock',
-		size: 10,
-		votes: 442567,
-		pastSupport: {
-			pis: 44.11,
-			ko: 22.40,
-			td: 17.07,
-			konfederacja: 6.52,
-			lewica: 6.52,
-		},
-	},
-	{
-		name: 'Radom',
-		size: 9,
-		votes: 391202,
-		pastSupport: {
-			pis: 48.68,
-			ko: 20.96,
-			td: 13.98,
-			konfederacja: 7.31,
-			lewica: 5.34,
-		},
-	},
-	{
-		name: 'Siedlce',
-		size: 12,
-		votes: 539408,
-		pastSupport: {
-			pis: 48.62,
-			ko: 18.71,
-			td: 15.51,
-			konfederacja: 8.21,
-			lewica: 4.85,
-		},
-	},
-	{
-		name: 'Warszawa I',
-		size: 20,
-		votes: 1714719,
-		pastSupport: {
-			ko: 43.23,
-			pis: 20.14,
-			lewica: 13.45,
-			td: 13.25,
-			konfederacja: 7.24,
-		},
-	},
-	{
-		name: 'Warszawa II',
-		size: 12,
-		votes: 730744,
-		pastSupport: {
-			ko: 35.23,
-			pis: 31.74,
-			td: 15.06,
-			konfederacja: 7.06,
-			lewica: 7.06,
-		},
-	},
-	{
-		name: 'Opole',
-		size: 12,
-		votes: 479968,
-		pastSupport: {
-			ko: 33.59,
-			pis: 31.26,
-			td: 12.74,
-			lewica: 7.24,
-			konfederacja: 6.49,
-		},
-	},
-	{
-		name: 'Krosno',
-		size: 11,
-		votes: 441996,
-		pastSupport: {
-			pis: 54.70,
-			ko: 15.85,
-			td: 13.79,
-			konfederacja: 8.62,
-			lewica: 4.47,
-		},
-	},
-	{
-		name: 'Rzeszów',
-		size: 15,
-		votes: 673776,
-		pastSupport: {
-			pis: 51.60,
-			ko: 17.70,
-			td: 12.42,
-			konfederacja: 9.48,
-			lewica: 4.87,
-		},
-	},
-	{
-		name: 'Białystok',
-		size: 14,
-		votes: 609244,
-		pastSupport: {
-			pis: 42.39,
-			ko: 20.84,
-			td: 18.86,
-			konfederacja: 9.79,
-			lewica: 4.84,
-		},
-	},
-	{
-		name: 'Gdańsk',
-		size: 12,
-		votes: 616287,
-		pastSupport: {
-			ko: 41.70,
-			pis: 25.20,
-			td: 14.70,
-			lewica: 9.41,
-			konfederacja: 6.23,
-		},
-	},
-	{
-		name: 'Gdynia',
-		size: 14,
-		votes: 682899,
-		pastSupport: {
-			ko: 37.91,
-			pis: 29.24,
-			td: 13.59,
-			lewica: 8.33,
-			konfederacja: 7.21,
-		},
-	},
-	{
-		name: 'Bielsko-Biała',
-		size: 9,
-		votes: 445346,
-		pastSupport: {
-			pis: 36.71,
-			ko: 28.67,
-			td: 14.55,
-			konfederacja: 7.84,
-			lewica: 7.77,
-		},
-	},
-	{
-		name: 'Częstochowa',
-		size: 7,
-		votes: 323941,
-		pastSupport: {
-			pis: 36.35,
-			ko: 29.11,
-			td: 14.72,
-			lewica: 9.41,
-			konfederacja: 6.56,
-		},
-	},
-	{
-		name: 'Gliwice',
-		size: 9,
-		votes: 387408,
-		pastSupport: {
-			ko: 36.06,
-			pis: 30.16,
-			td: 13.34,
-			lewica: 9.21,
-			konfederacja: 6.95,
-		},
-	},
-	{
-		name: 'Rybnik',
-		size: 9,
-		votes: 381598,
-		pastSupport: {
-			pis: 38.06,
-			ko: 29.98,
-			td: 12.45,
-			konfederacja: 8.00,
-			lewica: 6.84,
-		},
-	},
-	{
-		name: 'Katowice',
-		size: 12,
-		votes: 526167,
-		pastSupport: {
-			ko: 36.79,
-			pis: 30.88,
-			td: 13.27,
-			lewica: 8.46,
-			konfederacja: 6.70,
-		},
-	},
-	{
-		name: 'Sosnowiec',
-		size: 9,
-		votes: 377959,
-		pastSupport: {
-			ko: 30.30,
-			pis: 29.74,
-			lewica: 21.60,
-			td: 9.85,
-			konfederacja: 5.69,
-		},
-	},
-	{
-		name: 'Kielce',
-		size: 16,
-		votes: 659132,
-		pastSupport: {
-			pis: 47.07,
-			ko: 20.93,
-			td: 13.80,
-			lewica: 6.83,
-			konfederacja: 6.55,
-		},
-	},
-	{
-		name: 'Elbląg',
-		size: 8,
-		votes: 299380,
-		pastSupport: {
-			pis: 35.20,
-			ko: 31.87,
-			td: 15.40,
-			lewica: 8.11,
-			konfederacja: 6.54,
-		},
-	},
-	{
-		name: 'Olsztyn',
-		size: 10,
-		votes: 391058,
-		pastSupport: {
-			ko: 33.07,
-			pis: 32.33,
-			td: 16.11,
-			lewica: 8.09,
-			konfederacja: 6.93,
-		},
-	},
-	{
-		name: 'Kalisz',
-		size: 12,
-		votes: 542267,
-		pastSupport: {
-			pis: 35.85,
-			ko: 28.58,
-			td: 16.16,
-			lewica: 8.52,
-			konfederacja: 6.98,
-		},
-	},
-	{
-		name: 'Konin',
-		size: 9,
-		votes: 419243,
-		pastSupport: {
-			pis: 38.69,
-			ko: 23.99,
-			td: 16.63,
-			lewica: 9.48,
-			konfederacja: 6.97,
-		},
-	},
-	{
-		name: 'Piła',
-		size: 9,
-		votes: 413235,
-		pastSupport: {
-			ko: 34.87,
-			pis: 29.11,
-			td: 17.66,
-			lewica: 7.84,
-			konfederacja: 6.87,
-		},
-	},
-	{
-		name: 'Poznań',
-		size: 10,
-		votes: 596038,
-		pastSupport: {
-			ko: 44.09,
-			pis: 19.57,
-			td: 16.54,
-			lewica: 12.31,
-			konfederacja: 5.90,
-		},
-	},
-	{
-		name: 'Koszalin',
-		size: 8,
-		votes: 322149,
-		pastSupport: {
-			ko: 38.69,
-			pis: 31.36,
-			td: 12.35,
-			lewica: 8.72,
-			konfederacja: 6.02,
-		},
-	},
-	{
-		name: 'Szczecin',
-		size: 12,
-		votes: 554308,
-		pastSupport: {
-			ko: 40.13,
-			pis: 28.79,
-			td: 12.62,
-			lewica: 9.39,
-			konfederacja: 5.94,
-		},
-	},
+const constituencyDefs: Array<{name: string, size: number}> = [
+	{name: 'Legnica', size: 12},
+	{name: 'Wałbrzych', size: 8},
+	{name: 'Wrocław', size: 14},
+	{name: 'Bydgoszcz', size: 12},
+	{name: 'Toruń', size: 13},
+	{name: 'Lublin', size: 15},
+	{name: 'Chełm', size: 12},
+	{name: 'Zielona Góra', size: 12},
+	{name: 'Łódź', size: 10},
+	{name: 'Piotrków Trybunalski', size: 9},
+	{name: 'Sieradz', size: 12},
+	{name: 'Chrzanów', size: 8},
+	{name: 'Kraków', size: 14},
+	{name: 'Nowy Sącz', size: 10},
+	{name: 'Tarnów', size: 9},
+	{name: 'Płock', size: 10},
+	{name: 'Radom', size: 9},
+	{name: 'Siedlce', size: 12},
+	{name: 'Warszawa I', size: 20},
+	{name: 'Warszawa II', size: 12},
+	{name: 'Opole', size: 12},
+	{name: 'Krosno', size: 11},
+	{name: 'Rzeszów', size: 15},
+	{name: 'Białystok', size: 14},
+	{name: 'Gdańsk', size: 12},
+	{name: 'Gdynia', size: 14},
+	{name: 'Bielsko-Biała', size: 9},
+	{name: 'Częstochowa', size: 7},
+	{name: 'Gliwice', size: 9},
+	{name: 'Rybnik', size: 9},
+	{name: 'Katowice', size: 12},
+	{name: 'Sosnowiec', size: 9},
+	{name: 'Kielce', size: 16},
+	{name: 'Elbląg', size: 8},
+	{name: 'Olsztyn', size: 10},
+	{name: 'Kalisz', size: 12},
+	{name: 'Konin', size: 9},
+	{name: 'Piła', size: 9},
+	{name: 'Poznań', size: 10},
+	{name: 'Koszalin', size: 8},
+	{name: 'Szczecin', size: 12},
 ];
+
+export const constituencies: Constituency[] = constituencyDefs.map((def, i) => ({
+	name: def.name,
+	size: def.size,
+	votes: wyniki2023[i].votes,
+	pastSupport: rowPastSupport(wyniki2023[i]),
+}));

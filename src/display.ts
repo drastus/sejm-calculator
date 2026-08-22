@@ -241,10 +241,29 @@ export const generateTable = (): void => {
 	}));
 };
 
+const legacyIdMap: Record<string, string> = {
+	lewica: 'nl',
+	konfederacja: 'konf',
+};
+
 export const loadResultsFromUrl = (): void => {
 	if (location.search) {
 		const searchParams = new URLSearchParams(location.search);
+		const normalizedParams = new URLSearchParams();
+		let hasLegacyKeys = false;
+
 		searchParams.forEach((value, key) => {
+			const normalizedKey = legacyIdMap[key] ?? key;
+			if (normalizedKey !== key) hasLegacyKeys = true;
+			normalizedParams.append(normalizedKey, value);
+		});
+
+		if (hasLegacyKeys) {
+			const urlWithoutSearch = location.href.split('?')[0];
+			window.history.replaceState('', '', `${urlWithoutSearch}?${normalizedParams.toString()}`);
+		}
+
+		normalizedParams.forEach((value, key) => {
 			const input = document.querySelector<HTMLInputElement>(`tr.${key} td:nth-child(2) input`);
 			if (input) input.value = value;
 		});

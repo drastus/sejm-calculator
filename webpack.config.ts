@@ -20,6 +20,10 @@ export default {
 				use: 'babel-loader',
 			},
 			{
+				test: /\.csv$/,
+				type: 'asset/source',
+			},
+			{
 				test: /\.pug$/,
 				exclude: /node_modules/,
 				use: '@webdiscus/pug-loader',

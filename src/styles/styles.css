@@ -175,11 +175,11 @@ h2 {
 :root {
 	--pis: #31469b;
 	--ko: #fca43f;
-	--lewica: #d44;
+	--nl: #d44;
 	--razem: #870f57;
 	--pl2050: #fbc314;
 	--psl: #1bb100;
-	--konfederacja: #4169e1;
+	--konf: #4169e1;
 	--korona: #903;
 	--mn: #aaa;
 	--rplus: #5578d8;
@@ -195,9 +195,9 @@ h2 {
 	fill: var(--ko);
 }
 
-.lewica {
-	stroke: var(--lewica);
-	fill: var(--lewica);
+.nl {
+	stroke: var(--nl);
+	fill: var(--nl);
 }
 
 .razem {
@@ -215,9 +215,9 @@ h2 {
 	fill: var(--psl);
 }
 
-.konfederacja {
-	stroke: var(--konfederacja);
-	fill: var(--konfederacja);
+.konf {
+	stroke: var(--konf);
+	fill: var(--konf);
 }
 
 .korona {

@@ -19,5 +19,6 @@ module.exports = {
 		'\\.(pug)$': 'jest-transform-pug',
 		'.+\\.(css)$': 'jest-transform-stub',
 		'^.+\\.svg$': 'jest-transform-stub',
+		'^.+\\.csv$': './jest-transform-csv.js',
 	},
 };
