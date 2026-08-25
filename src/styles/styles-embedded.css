@@ -1,0 +1,58 @@
+body {
+	color: inherit;
+	background-color: inherit;
+	font-size: inherit;
+}
+
+main,
+footer {
+	max-width: none;
+	margin-top: 0;
+	padding-left: 0;
+	padding-right: 0;
+	border: none;
+	background-color: transparent;
+}
+
+main > h2:first-child {
+	font-size: 1.75rem;
+	margin-top: 0;
+}
+
+.constituency th,
+.constituency td {
+	border: none;
+	border-bottom: 1px solid var(--pico-table-border-color, #888);
+}
+
+a.github {
+	color: inherit;
+}
+
+[data-theme="dark"] .ct-label {
+	fill: rgba(255, 255, 255, 0.6);
+	color: rgba(255, 255, 255, 0.6);
+}
+
+[data-theme="dark"] .ct-grid {
+	stroke: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .bar-value {
+	fill: rgba(255, 255, 255, 0.6);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) .ct-label {
+		fill: rgba(255, 255, 255, 0.6);
+		color: rgba(255, 255, 255, 0.6);
+	}
+
+	:root:not([data-theme="light"]) .ct-grid {
+		stroke: rgba(255, 255, 255, 0.2);
+	}
+
+	:root:not([data-theme="light"]) .bar-value {
+		fill: rgba(255, 255, 255, 0.6);
+	}
+}

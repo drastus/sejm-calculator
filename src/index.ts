@@ -9,7 +9,7 @@ import contentTemplate from './templates/content.pug';
 
 const loadContent = () => {
 	document.body.innerHTML = contentTemplate({
-		embed: window.location.hash === '#embed',
+		compact: window.location.hash === '#embed',
 	});
 };
 

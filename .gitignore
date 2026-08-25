@@ -1,4 +1,5 @@
 dist
+dist-embedded
 node_modules
 .eslintcache
 .debris

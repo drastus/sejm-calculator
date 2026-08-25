@@ -14,6 +14,7 @@
     "lint:css": "npx stylelint \"src/**/*.css\"",
     "lint": "npm run lint:js; npm run lint:css",
     "build": "webpack --mode=production",
+    "build:embedded": "webpack --mode=production --config webpack.config.embedded.ts",
     "deploy": "gh-pages -d dist"
   },
   "keywords": [

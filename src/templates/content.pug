@@ -1,6 +1,9 @@
-main(class=(embed ? 'embed' : ''))
-	unless embed
-		h1 Kalkulator mandatów w wyborach do Sejmu
+main(class=(compact ? 'compact' : ''))
+	unless compact
+		if embedded
+			h2 Kalkulator mandatów w wyborach do Sejmu
+		else
+			h1 Kalkulator mandatów w wyborach do Sejmu
 
 		p.
 			Kalkulator zwraca szacowany rozkład mandatów w Sejmie na podstawie wyników sondażowych.
@@ -34,17 +37,13 @@ main(class=(embed ? 'embed' : ''))
 	form#support-form
 		button#calculate-button Oblicz
 
-	unless embed
+	unless compact
 		#url
 
 	.charts-row
 		#support-bar-chart.ct-chart
 		#division-pie-chart.ct-chart
 
-	unless embed
+	unless compact
 		#constituency-results
 
-unless embed
-	footer
-		a.github(href='https://github.com/drastus/sejm-calculator') Kod źródłowy
-		address Kontakt: zrchos na serwerze gmail.com

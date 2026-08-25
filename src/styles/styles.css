@@ -17,13 +17,14 @@ footer {
 	background-color: white;
 }
 
-.embed {
+.compact {
 	margin: 0 auto;
 	padding: 0.25rem auto 1rem;
 }
 
 .updates-texts {
 	font-size: 13.5px;
+	width: fit-content;
 }
 
 .updates {
@@ -112,7 +113,7 @@ h2 {
 }
 
 .constituency {
-	max-width: 25rem;
+	max-width: 26rem;
 	margin: 0.5rem auto;
 	padding: 0.5rem 1rem;
 }
@@ -144,6 +145,7 @@ h2 {
 
 #support-form table {
 	margin: 1rem auto 0;
+	width: auto;
 }
 
 #support-form button {
@@ -245,19 +247,4 @@ h2 {
 
 .bar-value {
 	font-size: 12px;
-}
-
-footer {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	padding: 1rem 1.5rem;
-}
-
-address {
-	font-style: normal;
-}
-
-a.github {
-	color: #333;
 }
