@@ -1,1 +1,17 @@
-<!doctype html><html lang="pl"><head><title>Kalkulator mandatów w wyborach do Sejmu</title><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Kalkulator przeliczający sondażowe wyniki poparcia dla ugrupowań na przewidywany rozkład mandatów w Sejmie z uwzględnieniem obowiązujących okręgów wyborczych."><script defer="defer" src="bundle.js"></script><link href="main.css" rel="stylesheet"></head><body></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script>
+var target = "https://michalgorny.net/mandaty";
+var q = window.location.search;
+var h = window.location.hash;
+if (q) target += q;
+if (h) target += h;
+window.location.replace(target);
+</script>
+</head>
+<body>
+	<a href="https://michalgorny.net/mandaty">https://michalgorny.net/mandaty</a>
+</body>
+</html>
