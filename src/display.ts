@@ -11,6 +11,7 @@ const {location} = window;
 
 let barChart: BarChart | null = null;
 let pieChart: PieChart | null = null;
+let pieTooltipClickHandler: ((e: Event) => void) | null = null;
 
 const displayPercent = (value: number) => `${value.toLocaleString('pl', {
 	minimumFractionDigits: 0,
@@ -30,6 +31,12 @@ export const clearResults = (): void => {
 	});
 	if (barChart) barChart.detach();
 	if (pieChart) pieChart.detach();
+	const pieTooltip = document.getElementById('pie-tooltip');
+	if (pieTooltip) pieTooltip.style.display = 'none';
+	if (pieTooltipClickHandler) {
+		document.removeEventListener('click', pieTooltipClickHandler);
+		pieTooltipClickHandler = null;
+	}
 	const urlContainer = document.getElementById('url');
 	if (urlContainer) urlContainer.innerHTML = '';
 	document.getElementById('support-bar-chart')!.innerHTML = '';
@@ -125,7 +132,78 @@ const displayPieChart = (mandates: number[]) => {
 		),
 	};
 	document.getElementById('division-pie-chart')!.classList.add('ct-perfect-fourth');
-	return new PieChart('#division-pie-chart', chartData, chartOptions);
+
+	if (pieTooltipClickHandler) {
+		document.removeEventListener('click', pieTooltipClickHandler);
+		pieTooltipClickHandler = null;
+	}
+
+	let tooltip = document.getElementById('pie-tooltip');
+	if (!tooltip) {
+		tooltip = document.createElement('div');
+		tooltip.id = 'pie-tooltip';
+		document.body.appendChild(tooltip);
+	}
+	tooltip.style.display = 'none';
+
+	let tooltipPinned = false;
+
+	const showTooltip = (clientX: number, clientY: number, text: string) => {
+		tooltip!.textContent = text;
+		tooltip!.style.left = `${clientX + 12}px`;
+		tooltip!.style.top = `${clientY - 40}px`;
+		tooltip!.style.display = 'block';
+	};
+
+	const hideTooltip = () => {
+		tooltip!.style.display = 'none';
+		tooltipPinned = false;
+	};
+
+	const chart = new PieChart('#division-pie-chart', chartData, chartOptions);
+
+	chart.on<'draw'>('draw', (data) => {
+		if (data.type === 'slice') {
+			const {value} = data;
+			if (typeof value === 'number' && value < 15) {
+				const committee = commiteesWithMandates[data.index];
+				const tooltipText = `${committee.label}: ${value}`;
+				const node = data.element.getNode<SVGPathElement>();
+				node.style.cursor = 'pointer';
+
+				node.addEventListener('mouseover', (event) => {
+					if (!tooltipPinned) {
+						showTooltip(event.clientX, event.clientY, tooltipText);
+					}
+				});
+
+				node.addEventListener('mousemove', (event) => {
+					if (!tooltipPinned) {
+						showTooltip(event.clientX, event.clientY, tooltipText);
+					}
+				});
+
+				node.addEventListener('mouseout', () => {
+					if (!tooltipPinned) {
+						hideTooltip();
+					}
+				});
+
+				node.addEventListener('click', (event) => {
+					event.stopPropagation();
+					tooltipPinned = true;
+					showTooltip(event.clientX, event.clientY, tooltipText);
+				});
+			}
+		}
+	});
+
+	pieTooltipClickHandler = () => {
+		hideTooltip();
+	};
+	document.addEventListener('click', pieTooltipClickHandler);
+
+	return chart;
 };
 
 const displayConstituencyResults = () => {

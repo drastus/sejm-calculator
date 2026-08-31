@@ -58,6 +58,12 @@ li {
 	height: 0;
 }
 
+#division-pie-chart {
+	pointer-events: auto;
+	position: relative;
+	z-index: 1;
+}
+
 #division-pie-chart svg {
 	transform-origin: (0, 100%);
 	transform: translate(-6%, 34%) scale(1.1);
@@ -65,6 +71,18 @@ li {
 
 #division-pie-chart .ct-label {
 	fill: white;
+}
+
+#pie-tooltip {
+	position: fixed;
+	background: rgb(33 33 33 / 85%);
+	color: white;
+	padding: 4px 10px;
+	border-radius: 4px;
+	font-size: 13px;
+	pointer-events: none;
+	z-index: 1000;
+	white-space: nowrap;
 }
 
 @media (width <= 500px) {

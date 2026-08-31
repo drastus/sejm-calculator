@@ -22,7 +22,7 @@
   ],
   "author": "Michał Górny",
   "dependencies": {
-    "chartist": "^1.3.0",
+    "chartist": "^1.5.0",
     "modern-normalize": "^2.0.0"
   },
   "devDependencies": {
